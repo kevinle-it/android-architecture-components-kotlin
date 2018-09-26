@@ -12,6 +12,8 @@ buildscript {
 
         support_test_runner_version = "1.0.2"
         espresso_core_test_version = "3.0.2"
+
+        nav_version = "1.0.0-alpha06"
     }
     repositories {
         google()
