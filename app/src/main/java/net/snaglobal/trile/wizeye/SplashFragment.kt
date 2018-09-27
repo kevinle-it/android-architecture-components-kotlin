@@ -34,7 +34,7 @@ class SplashFragment : Fragment() {
         mainActivityViewModel.isToolbarVisible.value = false
 
         Handler().postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }, SPLASH_DELAY)
 
         return view
