@@ -8,8 +8,10 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_login.*
+import net.snaglobal.trile.wizeye.utils.KeyboardHelper
 
 /**
  * @author trile
@@ -44,8 +46,22 @@ class LoginFragment : Fragment() {
         password_input.afterTextChanged {
             toggleLoginButtonEnabling(server_address_input.text.toString(), id_input.text.toString(), it)
         }
+        password_input.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                KeyboardHelper.hideSoftKeyboard(activity, true)
+                login_button.callOnClick()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
+
+        login_button.setOnClickListener {
+            if (login_button.isEnabled) {
+                // TODO: Oct-15-2018 Attemp to login
+            }
+        }
     }
-    
+
     private fun toggleLoginButtonEnabling(serverAddress: String, id: String, password: String) {
         if (serverAddress.isNotEmpty() && id.isNotEmpty() && password.isNotEmpty()) {
             enableLoginButton()
