@@ -48,20 +48,28 @@ class LoginFragment : Fragment() {
     
     private fun toggleLoginButtonEnabling(serverAddress: String, id: String, password: String) {
         if (serverAddress.isNotEmpty() && id.isNotEmpty() && password.isNotEmpty()) {
-            login_button.isEnabled = true
-            login_button.background = context?.run {
-                ContextCompat.getDrawable(this, R.drawable.login_button_enabled_background)
-            }
+            enableLoginButton()
         } else if (login_button.background.constantState != context?.run {
                     ContextCompat.getDrawable(this,
                             R.drawable.login_button_disabled_background)?.constantState
                 }) {
-            login_button.isEnabled = false
-            login_button.background = context?.run {
-                ContextCompat.getDrawable(this, R.drawable.login_button_disabled_background)
-            }
+            disableLoginButton()
         } else {
             login_button.isEnabled = false
+        }
+    }
+
+    private fun enableLoginButton() {
+        login_button.isEnabled = true
+        login_button.background = context?.run {
+            ContextCompat.getDrawable(this, R.drawable.login_button_enabled_background)
+        }
+    }
+
+    private fun disableLoginButton() {
+        login_button.isEnabled = false
+        login_button.background = context?.run {
+            ContextCompat.getDrawable(this, R.drawable.login_button_disabled_background)
         }
     }
 
