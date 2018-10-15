@@ -203,7 +203,7 @@
             </android.support.constraint.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/error_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_screen_login_failed_message_top_margin"
