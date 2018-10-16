@@ -5,12 +5,19 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
+import net.snaglobal.trile.wizeye.api.login.LoginClient
+import net.snaglobal.trile.wizeye.api.model.LoginCredential
 import net.snaglobal.trile.wizeye.utils.KeyboardHelper
 
 /**
@@ -23,6 +30,8 @@ import net.snaglobal.trile.wizeye.utils.KeyboardHelper
  */
 class LoginFragment : Fragment() {
 
+    private val compositeDisposable = CompositeDisposable()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -34,6 +43,13 @@ class LoginFragment : Fragment() {
 
         // Remove auto-focus from all EditTexts
         main_container.requestFocus()
+
+        // Check if all AutoCompleteTextViews are filled with credential info on Application Opening
+        toggleLoginButtonEnabling(
+                server_address_input.text.toString(),
+                id_input.text.toString(),
+                password_input.text.toString()
+        )
 
         server_address_input.afterTextChanged {
             toggleLoginButtonEnabling(it, id_input.text.toString(), password_input.text.toString())
@@ -57,7 +73,8 @@ class LoginFragment : Fragment() {
 
         login_button.setOnClickListener {
             if (login_button.isEnabled) {
-                // TODO: Oct-15-2018 Attemp to login
+                KeyboardHelper.hideSoftKeyboard(activity, true)
+                attempLogin()
             }
         }
     }
@@ -72,6 +89,10 @@ class LoginFragment : Fragment() {
             disableLoginButton()
         } else {
             login_button.isEnabled = false
+        }
+
+        if (error_message.visibility == View.VISIBLE) {
+            error_message.visibility = View.INVISIBLE
         }
     }
 
@@ -103,6 +124,44 @@ class LoginFragment : Fragment() {
 
                 }
             })
+
+    private fun attempLogin() {
+        disableLoginButton()
+
+        val domain = server_address_input.text.toString()
+        val username = id_input.text.toString()
+        val password = password_input.text.toString()
+
+        compositeDisposable.add(
+                Single.defer {
+                    Single.just(
+                            LoginClient.login(
+                                    Constants.WIZEYE_LOGIN_URL.format(domain),
+                                    LoginCredential(domain, username, password)
+                            )
+                    )
+                }.subscribeOn(
+                        Schedulers.from(AppExecutors.getInstance(Unit).networkIO())
+                ).observeOn(
+                        AndroidSchedulers.mainThread()
+                ).subscribe({
+                    it?.let {
+                        Log.d("API", "Token: ${it.token}")
+                    }
+                    enableLoginButton()
+                }, {
+                    error_message.visibility = View.VISIBLE
+                    enableLoginButton()
+
+                    it.printStackTrace()
+                })
+        )
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.dispose()
+        super.onDestroy()
+    }
 
 
     companion object {
