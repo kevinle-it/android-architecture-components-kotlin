@@ -17,7 +17,7 @@ object RetrofitClient : SingletonHolder<Retrofit, String>({ httpUrl: String ->
     val logger = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
         Log.d("API", it)
     })
-    logger.level = HttpLoggingInterceptor.Level.HEADERS
+    logger.level = HttpLoggingInterceptor.Level.BODY
 
     val httpClient = OkHttpClient.Builder()
             .addInterceptor(logger)
