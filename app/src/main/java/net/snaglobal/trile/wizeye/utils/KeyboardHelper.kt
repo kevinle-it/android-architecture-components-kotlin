@@ -14,9 +14,7 @@ object KeyboardHelper {
     fun showSoftKeyboard(activity: Activity?, editText: EditText) {
         activity?.run {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm?.run {
-                showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
-            }
+            imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
         }
     }
 
@@ -27,9 +25,7 @@ object KeyboardHelper {
             val view = currentFocus
             view?.let {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm?.run {
-                    hideSoftInputFromWindow(view.windowToken, 0)
-                }
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
                 if (clearCurrentFocus) {
                     it.clearFocus()
                 }
