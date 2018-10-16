@@ -21,6 +21,7 @@ import net.snaglobal.trile.wizeye.Constants
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.api.login.LoginClient
 import net.snaglobal.trile.wizeye.api.model.LoginCredential
+import net.snaglobal.trile.wizeye.api.model.LoginResponse
 import net.snaglobal.trile.wizeye.utils.KeyboardHelper
 
 /**
@@ -147,17 +148,20 @@ class LoginFragment : Fragment() {
                         Schedulers.from(AppExecutors.getInstance(Unit).networkIO())
                 ).observeOn(
                         AndroidSchedulers.mainThread()
-                ).subscribe({
-                    it?.let {
-                        Log.d("API", "Token: ${it.token}")
-                    }
-                    enableLoginButton()
-                }, {
-                    error_message.visibility = View.VISIBLE
-                    enableLoginButton()
+                ).subscribe(
+                        { loginResponse: LoginResponse? ->
+                            loginResponse?.let {
+                                Log.d("API", "Token: ${it.token}")
+                            }
+                            enableLoginButton()
+                        },
+                        { throwable: Throwable? ->
+                            error_message.visibility = View.VISIBLE
+                            enableLoginButton()
 
-                    it.printStackTrace()
-                })
+                            throwable?.printStackTrace()
+                        }
+                )
         )
     }
 
