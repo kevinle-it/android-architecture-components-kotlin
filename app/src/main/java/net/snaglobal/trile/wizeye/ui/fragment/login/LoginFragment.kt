@@ -17,7 +17,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
 import net.snaglobal.trile.wizeye.AppExecutors
-import net.snaglobal.trile.wizeye.Constants
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.remote.login.LoginClient
 import net.snaglobal.trile.wizeye.data.remote.model.LoginCredential
@@ -140,7 +139,7 @@ class LoginFragment : Fragment() {
                 Single.defer {
                     Single.just(
                             LoginClient.login(
-                                    Constants.WIZEYE_LOGIN_URL.format(domain),
+                                    domain,
                                     LoginCredential(domain, username, password)
                             )
                     )

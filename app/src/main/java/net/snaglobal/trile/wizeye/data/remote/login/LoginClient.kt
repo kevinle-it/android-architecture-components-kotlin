@@ -1,6 +1,7 @@
 package net.snaglobal.trile.wizeye.data.remote.login
 
 import android.util.Log
+import net.snaglobal.trile.wizeye.data.remote.RemoteContract
 import net.snaglobal.trile.wizeye.data.remote.RetrofitClient
 import net.snaglobal.trile.wizeye.data.remote.model.LoginCredential
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
@@ -13,7 +14,9 @@ import java.io.IOException
 object LoginClient {
     @JvmStatic
     @Throws(IOException::class)
-    fun login(httpUrl: String, loginCredential: LoginCredential): LoginResponse? {
+    fun login(domain: String, loginCredential: LoginCredential): LoginResponse? {
+        val httpUrl = RemoteContract.WIZEYE_LOGIN_URL.format(domain)
+
         val loginClient = RetrofitClient.getInstance(httpUrl)
                 .create(ILoginClient::class.java)
 
