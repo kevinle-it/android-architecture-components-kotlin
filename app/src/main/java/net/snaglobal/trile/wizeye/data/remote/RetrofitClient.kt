@@ -1,4 +1,4 @@
-package net.snaglobal.trile.wizeye.api
+package net.snaglobal.trile.wizeye.data.remote
 
 import android.util.Log
 import net.snaglobal.trile.wizeye.AppExecutors

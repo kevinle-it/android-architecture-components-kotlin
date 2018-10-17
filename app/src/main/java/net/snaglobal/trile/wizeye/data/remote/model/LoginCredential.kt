@@ -1,4 +1,4 @@
-package net.snaglobal.trile.wizeye.api.model
+package net.snaglobal.trile.wizeye.data.remote.model
 
 import com.squareup.moshi.Json
 

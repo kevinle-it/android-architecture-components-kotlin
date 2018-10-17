@@ -1,7 +1,7 @@
-package net.snaglobal.trile.wizeye.api.login
+package net.snaglobal.trile.wizeye.data.remote.login
 
-import net.snaglobal.trile.wizeye.api.model.LoginCredential
-import net.snaglobal.trile.wizeye.api.model.LoginResponse
+import net.snaglobal.trile.wizeye.data.remote.model.LoginCredential
+import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
