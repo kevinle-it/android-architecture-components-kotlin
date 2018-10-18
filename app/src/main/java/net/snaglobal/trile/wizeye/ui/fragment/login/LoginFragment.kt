@@ -164,9 +164,9 @@ class LoginFragment : Fragment() {
         )
     }
 
-    override fun onDestroy() {
+    override fun onDetach() {
         compositeDisposable.dispose()
-        super.onDestroy()
+        super.onDetach()
     }
 
 
