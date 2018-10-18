@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -149,6 +150,7 @@ class LoginFragment : Fragment() {
                                 Log.d("API", "Token: ${it.token}")
                             }
                             enableLoginButton()
+                            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                         },
                         { throwable: Throwable? ->
                             error_message.visibility = View.VISIBLE
