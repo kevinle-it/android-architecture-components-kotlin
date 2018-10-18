@@ -14,13 +14,13 @@ import java.io.IOException
 object LoginClient {
     @JvmStatic
     @Throws(IOException::class)
-    fun login(domain: String, loginCredential: LoginCredential): LoginResponse? {
+    fun login(domain: String, username: String, password: String): LoginResponse? {
         val httpUrl = RemoteContract.WIZEYE_LOGIN_URL.format(domain)
 
         val loginClient = RetrofitClient.getInstance(httpUrl)
                 .create(ILoginClient::class.java)
 
-        val call = loginClient.login(loginCredential)
+        val call = loginClient.login(LoginCredential(domain, username, password))
 
         val response = call.execute()
 

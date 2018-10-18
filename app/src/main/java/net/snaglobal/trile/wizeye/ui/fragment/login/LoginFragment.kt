@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import net.snaglobal.trile.wizeye.AppExecutors
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.remote.login.LoginClient
-import net.snaglobal.trile.wizeye.data.remote.model.LoginCredential
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import net.snaglobal.trile.wizeye.utils.KeyboardHelper
 
@@ -138,10 +137,7 @@ class LoginFragment : Fragment() {
         compositeDisposable.add(
                 Single.defer {
                     Single.just(
-                            LoginClient.login(
-                                    domain,
-                                    LoginCredential(domain, username, password)
-                            )
+                            LoginClient.login(domain, username, password)
                     )
                 }.subscribeOn(
                         Schedulers.from(AppExecutors.getInstance(Unit).networkIO())
