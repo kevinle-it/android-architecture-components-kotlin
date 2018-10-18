@@ -33,7 +33,9 @@ import net.snaglobal.trile.wizeye.utils.KeyboardHelper
  */
 class LoginFragment : Fragment() {
 
-    private val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable by lazy {
+        CompositeDisposable()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
