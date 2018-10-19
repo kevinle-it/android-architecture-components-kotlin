@@ -5,10 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import net.snaglobal.trile.wizeye.InjectorUtils
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 
@@ -24,6 +21,9 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
 
     private val compositeDisposable by lazy {
         CompositeDisposable()
+    }
+    private val dataRepository by lazy {
+        InjectorUtils.provideRepository()
     }
 
     private val loginSuccessfulNotifier by lazy {
@@ -41,19 +41,11 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
 
     fun login(domain: String, username: String, password: String) {
         compositeDisposable.add(
-                Single.defer {
-                    Single.just(
-                            InjectorUtils.provideRemoteDataSource()
-                                    .login(domain, username, password)
-                    )
-                }.subscribeOn(
-                        Schedulers.from(InjectorUtils.provideAppExecutors().networkIO())
-                ).observeOn(
-                        AndroidSchedulers.mainThread()
-                ).subscribe(
-                        loginSuccessfulNotifier::postValue,
-                        loginErrorNotifier::postValue
-                )
+                dataRepository.login(domain, username, password)
+                        .subscribe(
+                                loginSuccessfulNotifier::postValue,
+                                loginErrorNotifier::postValue
+                        )
         )
     }
 
