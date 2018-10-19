@@ -16,6 +16,8 @@ buildscript {
         nav_version = "1.0.0-alpha06"
 
         lifecycle_version = "1.1.1"
+
+        retrofit_version = "2.4.0"
     }
     repositories {
         google()
