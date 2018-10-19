@@ -1,5 +1,7 @@
 package net.snaglobal.trile.wizeye.ui.fragment.login
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -12,14 +14,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.navigation.fragment.findNavController
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
-import net.snaglobal.trile.wizeye.AppExecutors
 import net.snaglobal.trile.wizeye.R
-import net.snaglobal.trile.wizeye.data.remote.login.LoginClient
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import net.snaglobal.trile.wizeye.utils.KeyboardHelper
 
@@ -33,8 +29,8 @@ import net.snaglobal.trile.wizeye.utils.KeyboardHelper
  */
 class LoginFragment : Fragment() {
 
-    private val compositeDisposable by lazy {
-        CompositeDisposable()
+    private val loginViewModel by lazy {
+        ViewModelProviders.of(this).get(LoginViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -82,6 +78,21 @@ class LoginFragment : Fragment() {
                 attempLogin()
             }
         }
+
+        loginViewModel.loginSuccessful.observe(this, Observer { loginResponse: LoginResponse? ->
+            loginResponse?.let {
+                Log.d("API", "Token: ${it.token}")
+            }
+            enableLoginButton()
+            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+        })
+
+        loginViewModel.loginError.observe(this, Observer { throwable: Throwable? ->
+            error_message.visibility = View.VISIBLE
+            enableLoginButton()
+
+            throwable?.printStackTrace()
+        })
     }
 
     private fun toggleLoginButtonEnabling(serverAddress: String, id: String, password: String) {
@@ -137,36 +148,7 @@ class LoginFragment : Fragment() {
         val username = id_input.text.toString()
         val password = password_input.text.toString()
 
-        compositeDisposable.add(
-                Single.defer {
-                    Single.just(
-                            LoginClient.login(domain, username, password)
-                    )
-                }.subscribeOn(
-                        Schedulers.from(AppExecutors.getInstance(Unit).networkIO())
-                ).observeOn(
-                        AndroidSchedulers.mainThread()
-                ).subscribe(
-                        { loginResponse: LoginResponse? ->
-                            loginResponse?.let {
-                                Log.d("API", "Token: ${it.token}")
-                            }
-                            enableLoginButton()
-                            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
-                        },
-                        { throwable: Throwable? ->
-                            error_message.visibility = View.VISIBLE
-                            enableLoginButton()
-
-                            throwable?.printStackTrace()
-                        }
-                )
-        )
-    }
-
-    override fun onDetach() {
-        compositeDisposable.dispose()
-        super.onDetach()
+        loginViewModel.login(domain, username, password)
     }
 
 
