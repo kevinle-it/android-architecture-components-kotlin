@@ -1,7 +1,9 @@
 package net.snaglobal.trile.wizeye
 
+import android.content.Context
 import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
 import net.snaglobal.trile.wizeye.data.repository.DataRepository
+import net.snaglobal.trile.wizeye.data.room.RoomDataSource
 
 /**
  * Provides static methods to inject the various classes needed for this app.
@@ -17,7 +19,10 @@ object InjectorUtils {
     fun provideRemoteDataSource() = RemoteDataSource.getInstance(Unit)
 
     @JvmStatic
-    fun provideRepository() = DataRepository.getInstance(
-            provideRemoteDataSource(), provideAppExecutors()
+    fun provideRoomDataSource(context: Context) = RoomDataSource.getInstance(context)
+
+    @JvmStatic
+    fun provideRepository(context: Context) = DataRepository.getInstance(
+            provideRoomDataSource(context), provideRemoteDataSource(), provideAppExecutors()
     )
 }

@@ -23,7 +23,7 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
         CompositeDisposable()
     }
     private val dataRepository by lazy {
-        InjectorUtils.provideRepository()
+        InjectorUtils.provideRepository(app.applicationContext)
     }
 
     private val loginSuccessfulNotifier by lazy {

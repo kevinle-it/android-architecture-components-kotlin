@@ -6,6 +6,7 @@ import io.reactivex.schedulers.Schedulers
 import net.snaglobal.trile.wizeye.AppExecutors
 import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
+import net.snaglobal.trile.wizeye.data.room.RoomDataSource
 
 /**
  * Single Data Source of Truth of the whole Application.
@@ -14,6 +15,7 @@ import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
  * @since Oct 16, 2018 at 3:35 PM
  */
 class DataRepository(
+        private val roomDataSource: RoomDataSource,
         private val remoteDataSource: RemoteDataSource,
         private val executors: AppExecutors
 ) {
@@ -34,11 +36,12 @@ class DataRepository(
         @Volatile private var instance: DataRepository? = null
 
         fun getInstance(
+                roomDataSource: RoomDataSource,
                 remoteDataSource: RemoteDataSource,
                 executors: AppExecutors
         ): DataRepository =
                 instance ?: synchronized(this) {
-                    instance ?: DataRepository(remoteDataSource, executors).also {
+                    instance ?: DataRepository(roomDataSource, remoteDataSource, executors).also {
                         instance = it
                     }
                 }
