@@ -7,6 +7,7 @@ import net.snaglobal.trile.wizeye.AppExecutors
 import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import net.snaglobal.trile.wizeye.data.room.RoomDataSource
+import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 
 /**
  * Single Data Source of Truth of the whole Application.
@@ -25,6 +26,12 @@ class DataRepository(
                 Single.just(
                         remoteDataSource.login(domain, username, password)
                 )
+            }.flatMap {
+                roomDataSource.loginCredentialDao()
+                        .insertLoginCredential(
+                                LoginCredentialEntity(domain, username, password, it.token)
+                        )
+                return@flatMap Single.just(it)
             }.subscribeOn(
                     Schedulers.from(executors.networkIO())
             ).observeOn(
