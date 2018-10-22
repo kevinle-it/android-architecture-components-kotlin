@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3c701c672d6e606decc4ae5ad4b4265d",
+    "identityHash": "164b5a0ac86f1fe791dd19a2843dffbb",
     "entities": [
       {
         "tableName": "LoginCredentialEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`domain` TEXT NOT NULL, `userId` TEXT NOT NULL, `password` TEXT NOT NULL, `token` TEXT NOT NULL, PRIMARY KEY(`domain`, `userId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`domain` TEXT NOT NULL, `userId` TEXT NOT NULL, `password` TEXT NOT NULL, `token` TEXT NOT NULL, `lastLoggedIn` INTEGER NOT NULL, `isLoggedIn` INTEGER NOT NULL, PRIMARY KEY(`domain`, `userId`))",
         "fields": [
           {
             "fieldPath": "domain",
@@ -31,6 +31,18 @@
             "columnName": "token",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "lastLoggedIn",
+            "columnName": "lastLoggedIn",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLoggedIn",
+            "columnName": "isLoggedIn",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -46,7 +58,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3c701c672d6e606decc4ae5ad4b4265d\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"164b5a0ac86f1fe791dd19a2843dffbb\")"
     ]
   }
 }

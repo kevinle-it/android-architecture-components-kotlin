@@ -1,13 +1,13 @@
 package net.snaglobal.trile.wizeye.data.repository
 
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import net.snaglobal.trile.wizeye.AppExecutors
 import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import net.snaglobal.trile.wizeye.data.room.RoomDataSource
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
+import java.util.*
 
 /**
  * Single Data Source of Truth of the whole Application.
@@ -26,17 +26,19 @@ class DataRepository(
                 Single.just(
                         remoteDataSource.login(domain, username, password)
                 )
-            }.flatMap {
-                roomDataSource.loginCredentialDao()
-                        .insertLoginCredential(
-                                LoginCredentialEntity(domain, username, password, it.token)
-                        )
-                return@flatMap Single.just(it)
             }.subscribeOn(
                     Schedulers.from(executors.networkIO())
             ).observeOn(
-                    AndroidSchedulers.mainThread()
-            )
+                    Schedulers.from(executors.diskIO())
+            ).flatMap {
+                roomDataSource.loginCredentialDao()
+                        .insertLoginCredential(
+                                LoginCredentialEntity(
+                                        domain, username, password, it.token, Date(), true
+                                )
+                        )
+                return@flatMap Single.just(it)
+            }
 
 
     companion object {

@@ -1,6 +1,7 @@
 package net.snaglobal.trile.wizeye.data.room.entity
 
 import android.arch.persistence.room.Entity
+import java.util.*
 
 /**
  * @author lmtri
@@ -11,5 +12,7 @@ data class LoginCredentialEntity(
         val domain: String,
         val userId: String,
         val password: String,
-        val token: String
+        val token: String,
+        val lastLoggedIn: Date,
+        val isLoggedIn: Boolean
 )

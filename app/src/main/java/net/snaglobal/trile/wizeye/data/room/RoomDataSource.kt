@@ -3,9 +3,11 @@ package net.snaglobal.trile.wizeye.data.room
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import net.snaglobal.trile.wizeye.data.room.dao.LoginCredentialDao
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
+import net.snaglobal.trile.wizeye.data.room.entity.RoomDateConverter
 import net.snaglobal.trile.wizeye.utils.SingletonHolder
 
 /**
@@ -18,6 +20,7 @@ import net.snaglobal.trile.wizeye.utils.SingletonHolder
         entities = [LoginCredentialEntity::class],
         version = 1
 )
+@TypeConverters(value = [RoomDateConverter::class])
 abstract class RoomDataSource : RoomDatabase() {
 
     abstract fun loginCredentialDao(): LoginCredentialDao
