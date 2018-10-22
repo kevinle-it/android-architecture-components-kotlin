@@ -1,6 +1,7 @@
 package net.snaglobal.trile.wizeye
 
 import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
+import net.snaglobal.trile.wizeye.data.repository.DataRepository
 
 /**
  * Provides static methods to inject the various classes needed for this app.
@@ -14,4 +15,9 @@ object InjectorUtils {
 
     @JvmStatic
     fun provideRemoteDataSource() = RemoteDataSource.getInstance(Unit)
+
+    @JvmStatic
+    fun provideRepository() = DataRepository.getInstance(
+            provideRemoteDataSource(), provideAppExecutors()
+    )
 }
