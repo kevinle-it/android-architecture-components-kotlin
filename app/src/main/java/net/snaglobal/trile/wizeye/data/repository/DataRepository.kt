@@ -37,6 +37,12 @@ class DataRepository(
                                         domain, username, password, it.token, Date(), true
                                 )
                         )
+                roomDataSource.loginCredentialDao()
+                        .updateLoginCredential(
+                                LoginCredentialEntity(
+                                        domain, username, password, it.token, Date(), true
+                                )
+                        )
                 return@flatMap Single.just(it)
             }
 
