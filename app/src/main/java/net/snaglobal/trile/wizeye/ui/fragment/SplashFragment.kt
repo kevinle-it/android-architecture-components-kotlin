@@ -22,10 +22,8 @@ import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 class SplashFragment : Fragment() {
     private val SPLASH_DELAY: Long = 3000
 
-    private val mainActivityViewModel by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProviders
-                .of(activity!!)
-                .get(MainActivityViewModel::class.java)
+    private val mainActivityViewModel by lazy {
+        ViewModelProviders.of(activity!!).get(MainActivityViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
