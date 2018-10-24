@@ -73,7 +73,7 @@
                         android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
                         android:src="@drawable/ic_cloud" />
 
-                    <net.snaglobal.trile.wizeye.customview.CustomAutoCompleteTextView
+                    <net.snaglobal.trile.wizeye.ui.customview.CustomAutoCompleteTextView
                         android:id="@+id/server_address_input"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/login_screen_input_box_height"
@@ -118,7 +118,7 @@
                         android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
                         android:src="@drawable/ic_user" />
 
-                    <net.snaglobal.trile.wizeye.customview.CustomAutoCompleteTextView
+                    <net.snaglobal.trile.wizeye.ui.customview.CustomAutoCompleteTextView
                         android:id="@+id/id_input"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/login_screen_input_box_height"
@@ -162,7 +162,7 @@
                         android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
                         android:src="@drawable/ic_unlocked" />
 
-                    <net.snaglobal.trile.wizeye.customview.CustomEditText
+                    <net.snaglobal.trile.wizeye.ui.customview.CustomEditText
                         android:id="@+id/password_input"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/login_screen_input_box_height"

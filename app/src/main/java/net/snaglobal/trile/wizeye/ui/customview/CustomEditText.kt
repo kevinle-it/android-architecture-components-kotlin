@@ -1,15 +1,15 @@
-package net.snaglobal.trile.wizeye.customview
+package net.snaglobal.trile.wizeye.ui.customview
 
 import android.content.Context
+import android.support.v7.widget.AppCompatEditText
 import android.util.AttributeSet
 import android.view.KeyEvent
-import android.widget.AutoCompleteTextView
 
 /**
  * @author lmtri
- * @since Oct 08, 2018 at 4:15 PM
+ * @since Oct 08, 2018 at 4:39 PM
  */
-class CustomAutoCompleteTextView : AutoCompleteTextView {
+class CustomEditText : AppCompatEditText {
 
     constructor(context: Context)
             : super(context)
