@@ -15,6 +15,8 @@ import net.snaglobal.trile.wizeye.InjectorUtils
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 
+private const val SPLASH_DELAY: Long = 3000
+
 /**
  * @author trile
  * @since Sep 24, 2018 at 10:51 AM
@@ -24,7 +26,6 @@ import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
  * create an instance of this fragment.
  */
 class SplashFragment : Fragment() {
-    private val SPLASH_DELAY: Long = 3000
 
     private val mainActivityViewModel by lazy {
         ViewModelProviders.of(activity!!).get(MainActivityViewModel::class.java)
