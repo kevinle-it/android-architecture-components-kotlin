@@ -1,5 +1,7 @@
 package net.snaglobal.trile.wizeye.ui.fragment
 
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import io.reactivex.disposables.CompositeDisposable
+import net.snaglobal.trile.wizeye.InjectorUtils
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 
@@ -26,6 +30,17 @@ class SplashFragment : Fragment() {
         ViewModelProviders.of(activity!!).get(MainActivityViewModel::class.java)
     }
 
+    private val compositeDisposable by lazy {
+        CompositeDisposable()
+    }
+    private val dataRepository by lazy {
+        InjectorUtils.provideRepository(activity!!.applicationContext)
+    }
+
+    private val loggedInNotifier by lazy {
+        MutableLiveData<Boolean?>()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -33,12 +48,31 @@ class SplashFragment : Fragment() {
 
         mainActivityViewModel.isToolbarVisible.value = false
 
-        Handler().postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-        }, SPLASH_DELAY)
+        loggedInNotifier.observe(this, Observer { isLoggedIn: Boolean? ->
+            Handler().postDelayed({
+                isLoggedIn?.let {
+                    if (it) {
+                        findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+                    } else {
+                        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                    }
+                }
+            }, SPLASH_DELAY)
+        })
+        checkIfLoggedInOnAppOpen()
 
         return view
     }
+
+    private fun checkIfLoggedInOnAppOpen() =
+            compositeDisposable.add(
+                    dataRepository.checkIfLoggedInOnAppOpen()
+                            .subscribe({
+                                loggedInNotifier.postValue(it)
+                            }, {
+                                it.printStackTrace()
+                            })
+            )
 
 
     companion object {
