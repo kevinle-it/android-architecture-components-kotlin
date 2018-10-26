@@ -2,9 +2,9 @@ package net.snaglobal.trile.wizeye.data.remote.login
 
 import android.util.Log
 import net.snaglobal.trile.wizeye.data.remote.RemoteContract
-import net.snaglobal.trile.wizeye.data.remote.RetrofitClient
 import net.snaglobal.trile.wizeye.data.remote.model.LoginCredential
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
+import net.snaglobal.trile.wizeye.data.remote.retrofit.RetrofitClient
 import java.io.IOException
 
 /**

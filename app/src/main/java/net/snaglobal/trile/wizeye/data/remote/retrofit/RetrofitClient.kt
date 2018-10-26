@@ -1,4 +1,4 @@
-package net.snaglobal.trile.wizeye.data.remote
+package net.snaglobal.trile.wizeye.data.remote.retrofit
 
 import android.util.Log
 import net.snaglobal.trile.wizeye.AppExecutors
