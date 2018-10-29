@@ -26,4 +26,8 @@
     <dimen name="login_screen_button_text_size">16sp</dimen>
     <dimen name="login_screen_login_failed_message_top_margin">24dp</dimen>
     <dimen name="login_screen_login_failed_message_text_size">12sp</dimen>
+
+    <!--Main Screen-->
+    <!--Bottom Navigation View-->
+    <dimen name="main_screen_bottom_navigation_height">48dp</dimen>
 </resources>

@@ -15,4 +15,11 @@
     <string name="login_screen_password_input_hint">Password</string>
     <string name="login_screen_login_button_text">Log In</string>
     <string name="login_screen_login_failed_message">Your Server, ID or Password might be wrong.\nPlease try again.</string>
+
+    <!--Main Screen-->
+    <!--Bottom Navigation View-->
+    <string name="title_map">Map</string>
+    <string name="title_alert_list">Alert List</string>
+    <string name="title_chart_graph">Chart/Graph</string>
+    <string name="title_video">Video</string>
 </resources>
