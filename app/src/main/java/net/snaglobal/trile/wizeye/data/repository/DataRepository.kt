@@ -7,6 +7,7 @@ import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import net.snaglobal.trile.wizeye.data.room.RoomDataSource
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
+import net.snaglobal.trile.wizeye.utils.Optional
 import java.util.*
 
 /**
@@ -44,6 +45,25 @@ class DataRepository(
                                 )
                         )
                 return@flatMap Single.just(it)
+            }
+
+    fun checkIfLoggedInOnAppOpen(): Single<Boolean> =
+            Single.defer {
+                Single.just(
+                        Optional.ofNullable(
+                                roomDataSource.loginCredentialDao().getLastLoggedInCredential()
+                        )
+                )
+            }.subscribeOn(
+                    Schedulers.from(executors.diskIO())
+            ).observeOn(
+                    Schedulers.from(executors.diskIO())
+            ).flatMap {
+                it.value?.let { loginCredentialEntity ->
+                    return@flatMap Single.just(loginCredentialEntity.isLoggedIn)
+                } ?: kotlin.run {
+                    return@flatMap Single.just(false)
+                }
             }
 
 

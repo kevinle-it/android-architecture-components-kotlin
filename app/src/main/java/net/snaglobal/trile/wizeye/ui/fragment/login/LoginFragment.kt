@@ -45,6 +45,13 @@ class LoginFragment : Fragment() {
         // Remove auto-focus from all EditTexts
         main_container.requestFocus()
 
+        loginViewModel.loggedInChecker.observe(this, Observer {
+            it?.let {
+                if (it) findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+            }
+        })
+        loginViewModel.checkIfLoggedInOnAppOpen()
+
         // Check if all AutoCompleteTextViews are filled with credential info on Application Opening
         toggleLoginButtonEnabling(
                 server_address_input.text.toString(),

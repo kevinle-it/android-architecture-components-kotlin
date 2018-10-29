@@ -39,6 +39,13 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
     val loginError: LiveData<Throwable?>
         get() = loginErrorNotifier
 
+
+    private val loggedInNotifier by lazy {
+        MutableLiveData<Boolean?>()
+    }
+    val loggedInChecker: LiveData<Boolean?>
+        get() = loggedInNotifier
+
     fun login(domain: String, username: String, password: String) {
         compositeDisposable.add(
                 dataRepository.login(domain, username, password)
@@ -48,6 +55,16 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
                         )
         )
     }
+
+    fun checkIfLoggedInOnAppOpen() =
+            compositeDisposable.add(
+                    dataRepository.checkIfLoggedInOnAppOpen()
+                            .subscribe({
+                                loggedInNotifier.postValue(it)
+                            }, {
+                                it.printStackTrace()
+                            })
+            )
 
     /**
      * Called when [LoginFragment] is destroyed completely.

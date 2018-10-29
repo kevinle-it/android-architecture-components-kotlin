@@ -12,6 +12,9 @@ interface LoginCredentialDao {
     @Query(value = "SELECT * FROM LoginCredentialEntity")
     fun getAllLoginCredential(): List<LoginCredentialEntity>
 
+    @Query(value = "SELECT * FROM LoginCredentialEntity ORDER BY lastLoggedIn DESC LIMIT 1")
+    fun getLastLoggedInCredential(): LoginCredentialEntity
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertLoginCredential(loginCredentialEntity: LoginCredentialEntity): Long // Inserted RowId
 
