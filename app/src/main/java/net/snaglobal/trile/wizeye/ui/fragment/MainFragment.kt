@@ -4,12 +4,15 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_main.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
+import net.snaglobal.trile.wizeye.ui.fragment.map.list.MapListFragment
 
 /**
  * A simple [Fragment] subclass.
@@ -27,23 +30,47 @@ class MainFragment : Fragment() {
                 .get(MainActivityViewModel::class.java)
     }
 
+    private val viewPagerAdapter by lazy {
+        ViewPagerAdapter(childFragmentManager)
+    }
+
+    private var prevMenuItem: MenuItem? = null
+
+    private val viewPagerOnPageChangeListener = object : ViewPager.SimpleOnPageChangeListener() {
+        override fun onPageSelected(position: Int) {
+            prevMenuItem?.let {
+                it.isChecked = false
+            } ?: run {
+                bottom_navigation.menu.getItem(0).isChecked = false
+            }
+            bottom_navigation.menu.getItem(position).isChecked = true
+            prevMenuItem = bottom_navigation.menu.getItem(position)
+        }
+    }
+
     private val onNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.navigation_map -> {
-                        return@OnNavigationItemSelectedListener true
+                    MainFragmentContract.NAVIGATION_INDEX_MAP -> {
+                        view_pager.setCurrentItem(MainFragmentContract.VIEW_PAGER_INDEX_MAP, false)
                     }
-                    R.id.navigation_alert -> {
-                        return@OnNavigationItemSelectedListener true
+                    MainFragmentContract.NAVIGATION_INDEX_ALERT -> {
+                        if (view_pager.currentItem == MainFragmentContract.VIEW_PAGER_INDEX_ALERT) {
+                            return@OnNavigationItemSelectedListener false
+                        }
                     }
-                    R.id.navigation_chart -> {
-                        return@OnNavigationItemSelectedListener true
+                    MainFragmentContract.NAVIGATION_INDEX_CHART -> {
+                        if (view_pager.currentItem == MainFragmentContract.VIEW_PAGER_INDEX_CHART) {
+                            return@OnNavigationItemSelectedListener false
+                        }
                     }
-                    R.id.navigation_video -> {
-                        return@OnNavigationItemSelectedListener true
+                    MainFragmentContract.NAVIGATION_INDEX_VIDEO -> {
+                        if (view_pager.currentItem == MainFragmentContract.VIEW_PAGER_INDEX_VIDEO) {
+                            return@OnNavigationItemSelectedListener false
+                        }
                     }
                 }
-                false
+                true
             }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +86,28 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view_pager.isPagingEnabled = false
+        view_pager.offscreenPageLimit = MainFragmentContract.VIEW_PAGER_OFF_SCREEN_PAGE_LIMIT
+
         bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        setupViewPager()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        view_pager.addOnPageChangeListener(viewPagerOnPageChangeListener)
+    }
+
+    override fun onStop() {
+        view_pager.removeOnPageChangeListener(viewPagerOnPageChangeListener)
+        super.onStop()
+    }
+
+    private fun setupViewPager() {
+        viewPagerAdapter.addFragment(MapListFragment.newInstance())
+
+        view_pager.adapter = viewPagerAdapter
     }
 
 
