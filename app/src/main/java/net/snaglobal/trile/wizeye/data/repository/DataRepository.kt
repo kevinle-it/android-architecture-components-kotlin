@@ -1,10 +1,13 @@
 package net.snaglobal.trile.wizeye.data.repository
 
+import android.arch.lifecycle.LiveData
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import net.snaglobal.trile.wizeye.AppExecutors
 import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
+import net.snaglobal.trile.wizeye.data.remote.model.MapListItem
+import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketRequest
 import net.snaglobal.trile.wizeye.data.room.RoomDataSource
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 import net.snaglobal.trile.wizeye.utils.Optional
@@ -65,6 +68,9 @@ class DataRepository(
                     return@flatMap Single.just(false)
                 }
             }
+
+    fun getMapList(serverUrl: String, request: WebSocketRequest): LiveData<List<MapListItem>> =
+            remoteDataSource.getMapList(serverUrl, request)
 
 
     companion object {
