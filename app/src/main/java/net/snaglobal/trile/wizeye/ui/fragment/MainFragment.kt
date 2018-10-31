@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 import net.snaglobal.trile.wizeye.ui.fragment.map.list.MapListFragment
+import net.snaglobal.trile.wizeye.ui.fragment.video.list.VideoListFragment
 
 /**
  * A simple [Fragment] subclass.
@@ -52,22 +53,28 @@ class MainFragment : Fragment() {
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     MainFragmentContract.NAVIGATION_INDEX_MAP -> {
+                        if (view_pager.currentItem == MainFragmentContract.VIEW_PAGER_INDEX_MAP) {
+                            return@OnNavigationItemSelectedListener false
+                        }
                         view_pager.setCurrentItem(MainFragmentContract.VIEW_PAGER_INDEX_MAP, false)
                     }
                     MainFragmentContract.NAVIGATION_INDEX_ALERT -> {
                         if (view_pager.currentItem == MainFragmentContract.VIEW_PAGER_INDEX_ALERT) {
                             return@OnNavigationItemSelectedListener false
                         }
+                        view_pager.setCurrentItem(MainFragmentContract.VIEW_PAGER_INDEX_ALERT, false)
                     }
                     MainFragmentContract.NAVIGATION_INDEX_CHART -> {
                         if (view_pager.currentItem == MainFragmentContract.VIEW_PAGER_INDEX_CHART) {
                             return@OnNavigationItemSelectedListener false
                         }
+                        view_pager.setCurrentItem(MainFragmentContract.VIEW_PAGER_INDEX_CHART, false)
                     }
                     MainFragmentContract.NAVIGATION_INDEX_VIDEO -> {
                         if (view_pager.currentItem == MainFragmentContract.VIEW_PAGER_INDEX_VIDEO) {
                             return@OnNavigationItemSelectedListener false
                         }
+                        view_pager.setCurrentItem(MainFragmentContract.VIEW_PAGER_INDEX_VIDEO, false)
                     }
                 }
                 true
@@ -106,6 +113,9 @@ class MainFragment : Fragment() {
 
     private fun setupViewPager() {
         viewPagerAdapter.addFragment(MapListFragment.newInstance())
+        viewPagerAdapter.addFragment(MapListFragment.newInstance())
+        viewPagerAdapter.addFragment(VideoListFragment.newInstance())
+        viewPagerAdapter.addFragment(VideoListFragment.newInstance())
 
         view_pager.adapter = viewPagerAdapter
     }
