@@ -4,4 +4,13 @@
     <dimen name="splash_screen_wizeye_logo_width">80dp</dimen>
     <dimen name="splash_screen_wizeye_logo_height">60dp</dimen>
     <dimen name="splash_screen_caption_text_size">12sp</dimen>
+
+    <!--Toolbar-->
+    <dimen name="toolbar_height">48dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="toolbar_content_inset_start">0dp</dimen>
+    <dimen name="toolbar_image_top_bottom_padding">8dp</dimen>
+    <dimen name="toolbar_left_padding">16dp</dimen>
+    <dimen name="toolbar_lottemart_logo_width">148dp</dimen>
+    <dimen name="toolbar_ic_more_left_right_padding">16dp</dimen>
 </resources>
