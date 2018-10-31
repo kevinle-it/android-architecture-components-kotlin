@@ -71,7 +71,7 @@
                         android:paddingLeft="@dimen/login_screen_input_left_image_left_right_padding"
                         android:paddingEnd="@dimen/login_screen_input_left_image_left_right_padding"
                         android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
-                        android:src="@drawable/ic_cloud" />
+                        app:srcCompat="@drawable/ic_cloud" />
 
                     <net.snaglobal.trile.wizeye.ui.customview.CustomAutoCompleteTextView
                         android:id="@+id/server_address_input"
@@ -116,7 +116,7 @@
                         android:paddingLeft="@dimen/login_screen_input_left_image_left_right_padding"
                         android:paddingEnd="@dimen/login_screen_input_left_image_left_right_padding"
                         android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
-                        android:src="@drawable/ic_user" />
+                        app:srcCompat="@drawable/ic_user" />
 
                     <net.snaglobal.trile.wizeye.ui.customview.CustomAutoCompleteTextView
                         android:id="@+id/id_input"
@@ -160,7 +160,7 @@
                         android:paddingLeft="@dimen/login_screen_input_left_image_left_right_padding"
                         android:paddingEnd="@dimen/login_screen_input_left_image_left_right_padding"
                         android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
-                        android:src="@drawable/ic_unlocked" />
+                        app:srcCompat="@drawable/ic_unlocked" />
 
                     <net.snaglobal.trile.wizeye.ui.customview.CustomEditText
                         android:id="@+id/password_input"
