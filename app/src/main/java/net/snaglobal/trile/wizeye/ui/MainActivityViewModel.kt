@@ -1,4 +1,4 @@
-package net.snaglobal.trile.wizeye
+package net.snaglobal.trile.wizeye.ui
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

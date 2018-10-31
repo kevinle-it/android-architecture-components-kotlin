@@ -1,4 +1,4 @@
-package net.snaglobal.trile.wizeye
+package net.snaglobal.trile.wizeye.ui.fragment.login
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,6 +16,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_login.*
+import net.snaglobal.trile.wizeye.AppExecutors
+import net.snaglobal.trile.wizeye.Constants
+import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.api.login.LoginClient
 import net.snaglobal.trile.wizeye.api.model.LoginCredential
 import net.snaglobal.trile.wizeye.utils.KeyboardHelper

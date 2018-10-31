@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".LoginFragment">
+    tools:context=".ui.fragment.login.LoginFragment">
 
     <ImageView
         android:layout_width="match_parent"

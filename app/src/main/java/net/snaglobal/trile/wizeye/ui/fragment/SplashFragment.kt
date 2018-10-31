@@ -1,4 +1,4 @@
-package net.snaglobal.trile.wizeye
+package net.snaglobal.trile.wizeye.ui.fragment
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import net.snaglobal.trile.wizeye.R
+import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 
 /**
  * @author trile
