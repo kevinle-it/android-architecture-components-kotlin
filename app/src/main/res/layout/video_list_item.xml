@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="videoListItem"
+            type="net.snaglobal.trile.wizeye.data.remote.model.VideoListItem" />
+
+        <variable
+            name="clickListener"
+            type="net.snaglobal.trile.wizeye.ui.fragment.video.list.VideoItemAdapter.OnVideoItemClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="@{() -> clickListener.onClick(videoListItem)}"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/video_item_left_padding"
+        android:paddingLeft="@dimen/video_item_left_padding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/video_item_location_icon_right_margin"
+            android:layout_marginRight="@dimen/video_item_location_icon_right_margin"
+            android:contentDescription="@string/video_item_ic_location_image_description"
+            app:srcCompat="@drawable/ic_camera" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/video_item_text_box_top_bottom_margin"
+                android:layout_marginBottom="@dimen/video_item_text_box_top_bottom_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@{videoListItem.name}"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    tools:text="Nam Saigon" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/video_item_next_icon_left_margin"
+                    android:layout_marginLeft="@dimen/video_item_next_icon_left_margin"
+                    android:layout_marginEnd="@dimen/video_item_next_icon_right_margin"
+                    android:layout_marginRight="@dimen/video_item_next_icon_right_margin"
+                    android:contentDescription="@string/video_item_ic_next_image_description"
+                    app:srcCompat="@drawable/ic_next" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/video_item_divider_height"
+                android:background="@color/outer_space" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
