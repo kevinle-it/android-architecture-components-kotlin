@@ -1,14 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello blank fragment" />
+        android:background="@drawable/josip_ivankovic_622078_unsplash"
+        android:contentDescription="@string/login_screen_backgound_image_description"
+        android:src="@drawable/splash_screen_foreground" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/login_form_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <ImageView
+                    android:id="@+id/wizeye_logo"
+                    android:layout_width="@dimen/splash_screen_wizeye_logo_width"
+                    android:layout_height="@dimen/splash_screen_wizeye_logo_height"
+                    android:layout_marginBottom="@dimen/login_screen_logo_bottom_margin"
+                    android:contentDescription="@string/login_screen_wizeye_logo_description"
+                    android:src="@drawable/ic_wizeye_logo"
+                    app:layout_constraintBottom_toTopOf="@+id/server_address_input_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <LinearLayout
+                    android:id="@+id/server_address_input_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginLeft="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginEnd="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginBottom="@dimen/login_screen_input_bottom_margin"
+                    android:background="@drawable/login_input_background"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/id_input_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/wizeye_logo">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/login_screen_server_address_input_left_image_description"
+                        android:paddingStart="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingLeft="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingEnd="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:src="@drawable/ic_cloud" />
+
+                    <net.snaglobal.trile.wizeye.customview.CustomAutoCompleteTextView
+                        android:id="@+id/server_address_input"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/login_screen_input_box_height"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="@string/font_family_roboto_medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/login_screen_server_address_input_hint"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="@android:color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/login_screen_input_text_size" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/id_input_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginLeft="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginEnd="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginBottom="@dimen/login_screen_input_bottom_margin"
+                    android:background="@drawable/login_input_background"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/password_input_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/server_address_input_container">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/login_screen_id_input_left_image_description"
+                        android:paddingStart="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingLeft="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingEnd="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:src="@drawable/ic_user" />
+
+                    <net.snaglobal.trile.wizeye.customview.CustomAutoCompleteTextView
+                        android:id="@+id/id_input"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/login_screen_input_box_height"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="@string/font_family_roboto_medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/login_screen_id_input_hint"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="@android:color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/login_screen_input_text_size" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/password_input_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginLeft="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginEnd="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
+                    android:background="@drawable/login_input_background"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/login_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_input_container">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/login_screen_password_input_left_image_description"
+                        android:paddingStart="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingLeft="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingEnd="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:paddingRight="@dimen/login_screen_input_left_image_left_right_padding"
+                        android:src="@drawable/ic_unlocked" />
+
+                    <net.snaglobal.trile.wizeye.customview.CustomEditText
+                        android:id="@+id/password_input"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/login_screen_input_box_height"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="@string/font_family_roboto_medium"
+                        android:gravity="center_vertical"
+                        android:hint="@string/login_screen_password_input_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="@android:color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/login_screen_input_text_size" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/login_screen_button_height"
+                    android:layout_marginStart="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginLeft="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginTop="@dimen/login_screen_button_top_margin"
+                    android:layout_marginEnd="@dimen/login_screen_input_left_right_margin"
+                    android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
+                    android:background="@drawable/login_button_disabled_background"
+                    android:enabled="false"
+                    android:text="@string/login_screen_login_button_text"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/login_screen_button_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/password_input_container" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_screen_login_failed_message_top_margin"
+                android:fontFamily="@string/font_family_roboto_medium"
+                android:text="@string/login_screen_login_failed_message"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/cream_can"
+                android:textSize="@dimen/login_screen_login_failed_message_text_size"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/login_form_group" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 
 </FrameLayout>

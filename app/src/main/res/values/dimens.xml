@@ -13,4 +13,17 @@
     <dimen name="toolbar_left_padding">16dp</dimen>
     <dimen name="toolbar_lottemart_logo_width">148dp</dimen>
     <dimen name="toolbar_ic_more_left_right_padding">16dp</dimen>
+
+    <!--Login Screen-->
+    <dimen name="login_screen_logo_bottom_margin">40dp</dimen>
+    <dimen name="login_screen_input_left_image_left_right_padding">16dp</dimen>
+    <dimen name="login_screen_input_box_height">45dp</dimen>
+    <dimen name="login_screen_input_left_right_margin">32dp</dimen>
+    <dimen name="login_screen_input_bottom_margin">16dp</dimen>
+    <dimen name="login_screen_input_text_size">16sp</dimen>
+    <dimen name="login_screen_button_height">56dp</dimen>
+    <dimen name="login_screen_button_top_margin">32dp</dimen>
+    <dimen name="login_screen_button_text_size">16sp</dimen>
+    <dimen name="login_screen_login_failed_message_top_margin">24dp</dimen>
+    <dimen name="login_screen_login_failed_message_text_size">12sp</dimen>
 </resources>

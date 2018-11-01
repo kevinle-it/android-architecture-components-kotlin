@@ -3,4 +3,16 @@
 
     <!--Splash Screen-->
     <string name="splash_screen_caption">BETTER MINITORING STARTS WITH\nBETTER VISUALIZATION</string>
+
+    <!--Login Screen-->
+    <string name="login_screen_backgound_image_description">Login Screen Background Image</string>
+    <string name="login_screen_wizeye_logo_description">Wizeye Logo</string>
+    <string name="login_screen_server_address_input_left_image_description">Server Address</string>
+    <string name="login_screen_server_address_input_hint">Server Address</string>
+    <string name="login_screen_id_input_left_image_description">ID</string>
+    <string name="login_screen_id_input_hint">ID</string>
+    <string name="login_screen_password_input_left_image_description">Password</string>
+    <string name="login_screen_password_input_hint">Password</string>
+    <string name="login_screen_login_button_text">Log In</string>
+    <string name="login_screen_login_failed_message">Your Server, ID or Password might be wrong.\nPlease try again.</string>
 </resources>

@@ -4,7 +4,15 @@
     <color name="colorPrimaryDark">#008BCC</color>
     <color name="colorAccent">#F84E4E</color>
 
-    <!--Splash Screen-->
+    <!--Splash Screen & Login Screen-->
     <color name="dodger_blue_90_percent">#E61BA1F3</color>
     <color name="endeavour_90_percent">#E60064A1</color>
+
+    <!--Login Screen-->
+    <color name="persimmon">#FF5656</color>
+    <color name="cinnabar">#E43939</color>
+    <color name="persimmon_50_percent">#80FF5656</color>
+    <color name="cinnabar_50_percent">#80E43939</color>
+    <color name="cream_can">#F2C94C</color>
+    <color name="white_45_percent">#73FFFFFF</color>
 </resources>
