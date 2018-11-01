@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="mapListItem"
+            type="net.snaglobal.trile.wizeye.data.remote.model.MapListItem" />
+
+        <variable
+            name="clickListener"
+            type="net.snaglobal.trile.wizeye.ui.fragment.map.list.MapItemAdapter.OnMapItemClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="@{() -> clickListener.onClick(mapListItem)}"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/map_item_left_padding"
+        android:paddingLeft="@dimen/map_item_left_padding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/map_item_location_icon_right_margin"
+            android:layout_marginRight="@dimen/map_item_location_icon_right_margin"
+            android:contentDescription="@string/map_item_ic_location_image_description"
+            app:srcCompat="@drawable/ic_location" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/map_item_text_box_top_bottom_margin"
+                android:layout_marginBottom="@dimen/map_item_text_box_top_bottom_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@{mapListItem.displayName}"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    tools:text="Nam Saigon" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/map_item_next_icon_left_margin"
+                    android:layout_marginLeft="@dimen/map_item_next_icon_left_margin"
+                    android:layout_marginEnd="@dimen/map_item_next_icon_right_margin"
+                    android:layout_marginRight="@dimen/map_item_next_icon_right_margin"
+                    android:contentDescription="@string/map_item_ic_next_image_description"
+                    app:srcCompat="@drawable/ic_next" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/map_item_divider_height"
+                android:background="@color/outer_space" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -28,6 +28,14 @@
     <dimen name="login_screen_login_failed_message_text_size">12sp</dimen>
 
     <!--Main Screen-->
+    <!--Map Item-->
+    <dimen name="map_item_left_padding">16dp</dimen>
+    <dimen name="map_item_location_icon_right_margin">24dp</dimen>
+    <dimen name="map_item_text_box_top_bottom_margin">16dp</dimen>
+    <dimen name="map_item_next_icon_left_margin">40dp</dimen>
+    <dimen name="map_item_next_icon_right_margin">24dp</dimen>
+    <dimen name="map_item_divider_height">1dp</dimen>
+
     <!--Bottom Navigation View-->
     <dimen name="main_screen_bottom_navigation_height">48dp</dimen>
 </resources>
