@@ -20,7 +20,9 @@ object LoginClient {
         val loginClient = RetrofitClient.getInstance(httpUrl)
                 .create(ILoginClient::class.java)
 
-        val call = loginClient.login(LoginCredential(domain, username, password))
+        val call = loginClient.login(
+                LoginCredential(RemoteContract.WIZEYE_LOGIN_FIXED_DOMAIN, username, password)
+        )
 
         val response = call.execute()
 
