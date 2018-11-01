@@ -3,4 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="dodger_blue_90_percent">#E61BA1F3</color>
+    <color name="endeavour_90_percent">#E60064A1</color>
 </resources>
