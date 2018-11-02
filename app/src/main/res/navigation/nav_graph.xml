@@ -45,4 +45,10 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
 
+    <fragment
+        android:id="@+id/videoDetailFragment"
+        android:name="net.snaglobal.trile.wizeye.ui.fragment.video.detail.VideoDetailFragment"
+        android:label="fragment_video_detail"
+        tools:layout="@layout/fragment_video_detail" />
+
 </navigation>
