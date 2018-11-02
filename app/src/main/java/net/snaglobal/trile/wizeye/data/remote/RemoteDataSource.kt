@@ -3,6 +3,7 @@ package net.snaglobal.trile.wizeye.data.remote
 import net.snaglobal.trile.wizeye.data.remote.login.LoginClient
 import net.snaglobal.trile.wizeye.data.remote.map.MapWebSocketClient
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
+import net.snaglobal.trile.wizeye.data.remote.video.VideoWebSocketClient
 import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketRequest
 import net.snaglobal.trile.wizeye.utils.SingletonHolder
 import java.io.IOException
@@ -21,6 +22,9 @@ class RemoteDataSource {
 
     fun getMapList(serverUrl: String, request: WebSocketRequest) =
             MapWebSocketClient.getMapList(serverUrl, request)
+
+    fun getVideoList(serverUrl: String, request: WebSocketRequest) =
+            VideoWebSocketClient.getVideoList(serverUrl, request)
 
     companion object : SingletonHolder<RemoteDataSource, Unit>({ RemoteDataSource() })
 }
