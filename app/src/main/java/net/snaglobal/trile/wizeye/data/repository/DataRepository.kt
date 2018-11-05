@@ -72,6 +72,19 @@ class DataRepository(
     fun getMapList(serverUrl: String, request: WebSocketRequest): LiveData<List<MapListItem>> =
             remoteDataSource.getMapList(serverUrl, request)
 
+    fun getLastLoggedInCredential(): Single<Optional<LoginCredentialEntity>> =
+            Single.defer {
+                Single.just(
+                        Optional.ofNullable(
+                                roomDataSource.loginCredentialDao().getLastLoggedInCredential()
+                        )
+                )
+            }.subscribeOn(
+                    Schedulers.from(executors.diskIO())
+            ).observeOn(
+                    Schedulers.from(executors.diskIO())
+            )
+
 
     companion object {
         @Volatile private var instance: DataRepository? = null
