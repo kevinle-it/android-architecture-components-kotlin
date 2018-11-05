@@ -7,6 +7,7 @@ import net.snaglobal.trile.wizeye.AppExecutors
 import net.snaglobal.trile.wizeye.data.remote.RemoteDataSource
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import net.snaglobal.trile.wizeye.data.remote.model.MapListItem
+import net.snaglobal.trile.wizeye.data.remote.model.VideoDetail
 import net.snaglobal.trile.wizeye.data.remote.model.VideoListItem
 import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketRequest
 import net.snaglobal.trile.wizeye.data.room.RoomDataSource
@@ -75,6 +76,9 @@ class DataRepository(
 
     fun getVideoList(serverUrl: String, request: WebSocketRequest): LiveData<List<VideoListItem>> =
             remoteDataSource.getVideoList(serverUrl, request)
+
+    fun getVideoDetail(serverUrl: String, request: WebSocketRequest): LiveData<VideoDetail?> =
+            remoteDataSource.getVideoDetail(serverUrl, request)
 
     fun getLastLoggedInCredential(): Single<Optional<LoginCredentialEntity>> =
             Single.defer {

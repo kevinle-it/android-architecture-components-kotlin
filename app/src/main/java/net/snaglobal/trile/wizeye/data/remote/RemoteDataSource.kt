@@ -26,5 +26,8 @@ class RemoteDataSource {
     fun getVideoList(serverUrl: String, request: WebSocketRequest) =
             VideoWebSocketClient.getVideoList(serverUrl, request)
 
+    fun getVideoDetail(serverUrl: String, request: WebSocketRequest) =
+            VideoWebSocketClient.getVideoDetail(serverUrl, request)
+
     companion object : SingletonHolder<RemoteDataSource, Unit>({ RemoteDataSource() })
 }
