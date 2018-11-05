@@ -24,6 +24,8 @@ buildscript {
         rxjava_version = "2.2.2"
 
         room_version = "1.1.1"
+
+        lib_vlc_version = "2.1.12@aar"
     }
     repositories {
         google()
