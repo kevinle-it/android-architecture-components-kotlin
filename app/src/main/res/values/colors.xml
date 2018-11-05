@@ -16,6 +16,10 @@
     <color name="cream_can">#F2C94C</color>
     <color name="white_45_percent">#73FFFFFF</color>
 
+    <!--Main Screen-->
+    <!--Main Fragment-->
+    <color name="woodsmoke">#171A1C</color>
+
     <!--Bottom Navigation-->
     <color name="outer_space">#31383E</color>
     <color name="gray_chateau">#9FA9B3</color>
