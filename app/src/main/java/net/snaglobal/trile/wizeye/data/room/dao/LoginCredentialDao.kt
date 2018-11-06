@@ -1,9 +1,6 @@
 package net.snaglobal.trile.wizeye.data.room.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 
 /**
@@ -15,6 +12,9 @@ interface LoginCredentialDao {
     @Query(value = "SELECT * FROM LoginCredentialEntity")
     fun getAllLoginCredential(): List<LoginCredentialEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertLoginCredential(loginCredentialEntity: LoginCredentialEntity): Long // Inserted RowId
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    fun updateLoginCredential(loginCredentialEntity: LoginCredentialEntity): Int // NumOfRowsUpdated
 }
