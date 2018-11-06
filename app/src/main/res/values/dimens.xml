@@ -41,6 +41,15 @@
     <dimen name="toolbar_action_more_popup_menu_action_icon_right_margin">16dp</dimen>
     <dimen name="toolbar_action_more_popup_menu_action_text_size">16sp</dimen>
 
+    <!--Custom Logout Confirmation Dialog-->
+    <dimen name="custom_logout_confirmation_dialog_message_left_right_padding">16dp</dimen>
+    <dimen name="custom_logout_confirmation_dialog_message_top_bottom_padding">40dp</dimen>
+    <dimen name="custom_logout_confirmation_dialog_message_text_size">16sp</dimen>
+    <dimen name="custom_logout_confirmation_dialog_horizontal_divider_height">1.5dp</dimen>
+    <dimen name="custom_logout_confirmation_dialog_action_top_bottom_padding">16dp</dimen>
+    <dimen name="custom_logout_confirmation_dialog_action_text_size">16sp</dimen>
+    <dimen name="custom_logout_confirmation_dialog_vertical_divider_width">1.5dp</dimen>
+
     <!--Map Item-->
     <dimen name="map_item_left_padding">16dp</dimen>
     <dimen name="map_item_location_icon_right_margin">24dp</dimen>
