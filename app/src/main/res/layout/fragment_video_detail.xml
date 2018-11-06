@@ -68,12 +68,35 @@
         app:layout_constraintTop_toBottomOf="@+id/camera_name"
         tools:text="CAMERA D01" />
 
-    <SurfaceView
-        android:id="@+id/camera_view"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/video_detail_screen_camera_view_top_margin"
         app:layout_constraintDimensionRatio="h,16:9"
-        app:layout_constraintTop_toBottomOf="@+id/camera_description" />
+        app:layout_constraintTop_toBottomOf="@+id/camera_description">
+
+        <SurfaceView
+            android:id="@+id/camera_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/circular_progress_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/video_loading_error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@string/font_family_roboto_medium"
+            android:text="@string/video_detail_screen_video_could_not_load_message"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/video_detail_screen_video_loading_error_message_text_size"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -68,6 +68,7 @@
     <dimen name="video_detail_screen_camera_name_text_size">24sp</dimen>
     <dimen name="video_detail_screen_camera_description_text_size">12sp</dimen>
     <dimen name="video_detail_screen_camera_view_top_margin">40dp</dimen>
+    <dimen name="video_detail_screen_video_loading_error_message_text_size">18sp</dimen>
 
     <!--Bottom Navigation View-->
     <dimen name="main_screen_bottom_navigation_height">48dp</dimen>
