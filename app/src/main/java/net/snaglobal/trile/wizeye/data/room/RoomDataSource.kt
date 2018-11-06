@@ -4,6 +4,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import net.snaglobal.trile.wizeye.data.room.dao.LoginCredentialDao
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 import net.snaglobal.trile.wizeye.utils.SingletonHolder
 
@@ -18,6 +19,8 @@ import net.snaglobal.trile.wizeye.utils.SingletonHolder
         version = 1
 )
 abstract class RoomDataSource : RoomDatabase() {
+
+    abstract fun loginCredentialDao(): LoginCredentialDao
 
     companion object : SingletonHolder<RoomDataSource, Context>({
         Room.databaseBuilder(
