@@ -1,5 +1,6 @@
 package net.snaglobal.trile.wizeye.ui
 
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
@@ -118,10 +119,29 @@ class MainActivity : AppCompatActivity() {
         ).setOnClickListener {
             actionMorePopupWindow.dismiss()
 
-            Toast.makeText(
-                    this, "Action Logout Clicked!", Toast.LENGTH_SHORT
-            ).show()
-            // TODO: Nov-01-2018 Perform user account logging out
+            val logoutDialogLayout = LayoutInflater.from(this)
+                    .inflate(R.layout.custom_logout_confirmation_dialog, null)
+
+            val logoutDialog = AlertDialog.Builder(this)
+                    .setView(logoutDialogLayout)
+                    .create()
+            // Make the background of the Dialog Window to be transparent before applying
+            // rounded corners background in the [custom_logout_confirmation_dialog] layout
+            // to avoid the effect of appearing small white squares at the corners
+            logoutDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            logoutDialog.show()
+
+            logoutDialogLayout.findViewById<TextView>(R.id.action_cancel).setOnClickListener {
+                logoutDialog.dismiss()
+            }
+            logoutDialogLayout.findViewById<TextView>(R.id.action_logout).setOnClickListener {
+                logoutDialog.dismiss()
+
+                Toast.makeText(
+                        this, "Log Out Clicked!", Toast.LENGTH_SHORT
+                ).show()
+                // TODO: Nov-06-2018 Perform Logging Out of Current User
+            }
         }
     }
 }
