@@ -57,6 +57,18 @@
     <dimen name="video_item_next_icon_right_margin">24dp</dimen>
     <dimen name="video_item_divider_height">1dp</dimen>
 
+    <!--Video Detail Screen-->
+    <dimen name="video_detail_screen_content_left_margin">16dp</dimen>
+    <dimen name="video_detail_screen_action_back_top_margin">24dp</dimen>
+    <dimen name="video_detail_screen_ic_back_width">8dp</dimen>
+    <dimen name="video_detail_screen_ic_back_height">16dp</dimen>
+    <dimen name="video_detail_screen_action_back_title_left_margin">12dp</dimen>
+    <dimen name="video_detail_screen_action_back_title_text_size">12sp</dimen>
+    <dimen name="video_detail_screen_camera_name_top_margin">16dp</dimen>
+    <dimen name="video_detail_screen_camera_name_text_size">24sp</dimen>
+    <dimen name="video_detail_screen_camera_description_text_size">12sp</dimen>
+    <dimen name="video_detail_screen_camera_view_top_margin">40dp</dimen>
+
     <!--Bottom Navigation View-->
     <dimen name="main_screen_bottom_navigation_height">48dp</dimen>
 </resources>

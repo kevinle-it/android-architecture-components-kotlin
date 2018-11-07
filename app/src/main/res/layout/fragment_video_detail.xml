@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/woodsmoke"
+    tools:context=".ui.fragment.video.detail.VideoDetailFragment">
+
+    <LinearLayout
+        android:id="@+id/action_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/video_detail_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/video_detail_screen_content_left_margin"
+        android:layout_marginTop="@dimen/video_detail_screen_action_back_top_margin"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/video_detail_screen_ic_back_width"
+            android:layout_height="@dimen/video_detail_screen_ic_back_height"
+            android:contentDescription="@string/video_detail_screen_ic_back_content_description"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/video_detail_screen_action_back_title_left_margin"
+            android:layout_marginLeft="@dimen/video_detail_screen_action_back_title_left_margin"
+            android:fontFamily="@string/font_family_roboto_medium"
+            android:gravity="start"
+            android:text="@string/video_detail_screen_action_back_title"
+            android:textColor="@color/cadet_blue"
+            android:textSize="@dimen/video_detail_screen_action_back_title_text_size" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/camera_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/video_detail_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/video_detail_screen_content_left_margin"
+        android:layout_marginTop="@dimen/video_detail_screen_camera_name_top_margin"
+        android:fontFamily="@string/font_family_roboto_regular"
+        android:gravity="start"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/video_detail_screen_camera_name_text_size"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_back"
+        tools:text="Nam Saigon" />
+
+    <TextView
+        android:id="@+id/camera_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/video_detail_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/video_detail_screen_content_left_margin"
+        android:fontFamily="@string/font_family_roboto_medium"
+        android:gravity="start"
+        android:textColor="@color/cadet_blue"
+        android:textSize="@dimen/video_detail_screen_camera_description_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera_name"
+        tools:text="CAMERA D01" />
+
+    <SurfaceView
+        android:id="@+id/camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/video_detail_screen_camera_view_top_margin"
+        app:layout_constraintDimensionRatio="h,16:9"
+        app:layout_constraintTop_toBottomOf="@+id/camera_description" />
+
+</android.support.constraint.ConstraintLayout>

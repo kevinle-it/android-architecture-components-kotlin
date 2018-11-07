@@ -29,6 +29,10 @@
     <string name="video_item_ic_location_image_description">Location Icon</string>
     <string name="video_item_ic_next_image_description">Next Icon</string>
 
+    <!--Video Detail Screen-->
+    <string name="video_detail_screen_ic_back_content_description">Back Icon</string>
+    <string name="video_detail_screen_action_back_title">BACK TO CCTV LIST</string>
+
     <!--Bottom Navigation View-->
     <string name="title_map">Map</string>
     <string name="title_alert_list">Alert List</string>
