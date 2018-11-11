@@ -1,5 +1,6 @@
 package net.snaglobal.trile.wizeye.ui.fragment.login
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -103,6 +104,8 @@ class LoginFragment : Fragment() {
         }
 
         loginViewModel.loginSuccessful.observe(this, Observer { loginResponse: LoginResponse? ->
+            (mainActivityViewModel.loginSuccessfulNotifier as MutableLiveData).value = loginResponse
+
             loginResponse?.let {
                 Log.d("API", "Token: ${it.token}")
             }

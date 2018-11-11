@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 import net.snaglobal.trile.wizeye.ui.fragment.MainFragment
-import net.snaglobal.trile.wizeye.ui.fragment.login.LoginViewModel
 import net.snaglobal.trile.wizeye.ui.fragment.video.detail.VideoDetailFragment
 import net.snaglobal.trile.wizeye.utils.observeOnce
 
@@ -30,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         ViewModelProviders
                 .of(this)
                 .get(MainActivityViewModel::class.java)
-    }
-    private val loginViewModel by lazy {
-        ViewModelProviders
-                .of(this)
-                .get(LoginViewModel::class.java)
     }
 
     private val actionMorePopupWindow by lazy {
@@ -88,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
         // Setup Popup Menu Layout after a successful logging in
-        loginViewModel.loginSuccessful.observeOnce(this, Observer {
+        mainActivityViewModel.loginSuccessfulNotifier.observe(this, Observer {
             mainActivityViewModel.getCurrentUserInfo().observeOnce(this, Observer { userEntity ->
                 userEntity?.let { user ->
                     setupPopupMenuLayout(user)

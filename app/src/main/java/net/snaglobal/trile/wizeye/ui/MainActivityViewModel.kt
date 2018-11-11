@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
 import net.snaglobal.trile.wizeye.InjectorUtils
+import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 
 /**
@@ -29,6 +30,8 @@ class MainActivityViewModel(app: Application) : AndroidViewModel(app) {
     private val currentUserInfoNotifier = MutableLiveData<LoginCredentialEntity?>()
 
     private val logoutNotifier = MutableLiveData<Boolean>()
+
+    val loginSuccessfulNotifier: LiveData<LoginResponse?> = MutableLiveData()
 
     fun getCurrentUserInfo(): LiveData<LoginCredentialEntity?> {
         compositeDisposable.add(
