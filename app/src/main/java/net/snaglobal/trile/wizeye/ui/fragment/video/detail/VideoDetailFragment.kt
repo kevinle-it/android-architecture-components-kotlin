@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_video_detail.*
 import net.snaglobal.trile.wizeye.R
+import net.snaglobal.trile.wizeye.data.remote.model.VideoDetail
 import net.snaglobal.trile.wizeye.ui.fragment.video.SharedVideoListDetailViewModel
 import org.videolan.libvlc.LibVLC
 import org.videolan.libvlc.Media
@@ -39,6 +40,7 @@ class VideoDetailFragment : Fragment() {
     private val videoDetailViewModel by lazy {
         ViewModelProviders.of(this).get(VideoDetailViewModel::class.java)
     }
+    private var currentVideoDetail: VideoDetail? = null
 
     private val libVLC by lazy {
         activity?.run {
@@ -51,14 +53,8 @@ class VideoDetailFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_video_detail, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         sharedVideoListDetailViewModel?.run {
             videoDetailViewModel.getVideoDetail(currentVideoItem.name).observe(
@@ -75,13 +71,26 @@ class VideoDetailFragment : Fragment() {
                                         camera_view.width, camera_view.height
                                 )
                             }
+                            currentVideoDetail = videoDetail
                         } ?: kotlin.run {
                             circular_progress_view.visibility = View.GONE
                             video_loading_error_message.visibility = View.VISIBLE
                         }
                     }
             )
-        } ?: kotlin.run {
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_video_detail, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (sharedVideoListDetailViewModel == null) {
             camera_name.text = getString(R.string.video_detail_screen_empty_name_description)
             camera_description.text = getString(R.string.video_detail_screen_empty_name_description)
 
@@ -93,6 +102,19 @@ class VideoDetailFragment : Fragment() {
                     "Invalid Activity. Cannot Load Camera Data.",
                     Toast.LENGTH_SHORT
             ).show()
+        }
+
+        videoDetailViewModel.currentVideoDetail?.apply {
+            camera_name.text = name
+            camera_description.text = description
+
+            camera_view.post {
+                streamVideoFrom(
+                        rtspUrl,
+                        rtspId, rtspPassword,
+                        camera_view.width, camera_view.height
+                )
+            }
         }
 
         action_back.setOnClickListener {
@@ -158,7 +180,19 @@ class VideoDetailFragment : Fragment() {
                         circular_progress_view.visibility = View.VISIBLE
                     }
                 }
-                MediaPlayer.Event.Playing -> Log.d(TAG, "Playing")
+                MediaPlayer.Event.Playing -> {
+                    Log.d(TAG, "Playing")
+
+                    // This [currentVideoDetail] will be used again in [onViewCreated] when
+                    // returning back to this [VideoDetailFragment] from [AboutFragment] or
+                    // other [Fragment]s, so we will need to store it into [VideoDetailViewModel]
+                    //
+                    // Reason: When navigating to [AboutFragment], only [onDestroyView] get called,
+                    // when returning back to this [VideoDetailFragment], only stages from
+                    // [onCreateView] and after get called
+                    // -> [onCreate] will NOT be called again
+                    videoDetailViewModel.currentVideoDetail = currentVideoDetail
+                }
                 MediaPlayer.Event.PositionChanged -> Log.d(TAG, "PositionChanged")
                 MediaPlayer.Event.TimeChanged -> {
                     Log.d(TAG, "TimeChanged")

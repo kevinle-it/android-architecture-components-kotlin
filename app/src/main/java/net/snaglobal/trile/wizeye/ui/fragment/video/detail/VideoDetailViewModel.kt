@@ -25,6 +25,8 @@ import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketRequestQuery
  */
 class VideoDetailViewModel(app: Application) : AndroidViewModel(app) {
 
+    var currentVideoDetail: VideoDetail? = null
+
     private val compositeDisposable by lazy {
         CompositeDisposable()
     }
