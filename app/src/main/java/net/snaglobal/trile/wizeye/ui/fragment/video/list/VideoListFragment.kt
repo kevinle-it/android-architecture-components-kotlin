@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_video_list.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.remote.model.VideoListItem
+import net.snaglobal.trile.wizeye.ui.fragment.video.SharedVideoListDetailViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -27,14 +28,24 @@ class VideoListFragment : Fragment() {
         ViewModelProviders.of(this).get(VideoListViewModel::class.java)
     }
 
+    private val sharedVideoListDetailViewModel by lazy {
+        activity?.run {
+            ViewModelProviders.of(this).get(SharedVideoListDetailViewModel::class.java)
+        }
+    }
+
     private val videoItemAdapter = VideoItemAdapter(object : VideoItemAdapter.OnVideoItemClickListener {
         override fun onClick(videoItem: VideoListItem) {
-            Toast.makeText(
-                    activity,
-                    "Video Item \"${videoItem.name}\" Clicked!",
-                    Toast.LENGTH_SHORT
-            ).show()
-            // TODO: Oct-30-2018 Implement Video Item On Click Function
+            sharedVideoListDetailViewModel?.run {
+                currentVideoItem = videoItem
+                findNavController().navigate(R.id.action_mainFragment_to_videoDetailFragment)
+            } ?: activity?.run {
+                Toast.makeText(
+                        this,
+                        "Invalid Activity. Cannot Navigate to Video Detail Screen",
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     })
 
