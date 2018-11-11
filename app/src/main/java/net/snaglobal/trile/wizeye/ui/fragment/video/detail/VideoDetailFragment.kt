@@ -176,8 +176,8 @@ class VideoDetailFragment : Fragment() {
                 MediaPlayer.Event.Buffering -> {
                     Log.d(TAG, "Buffering")
 
-                    if (circular_progress_view.visibility != View.VISIBLE) {
-                        circular_progress_view.visibility = View.VISIBLE
+                    if (circular_progress_view?.visibility != View.VISIBLE) {
+                        circular_progress_view?.visibility = View.VISIBLE
                     }
                 }
                 MediaPlayer.Event.Playing -> {
@@ -197,23 +197,23 @@ class VideoDetailFragment : Fragment() {
                 MediaPlayer.Event.TimeChanged -> {
                     Log.d(TAG, "TimeChanged")
 
-                    if (circular_progress_view.visibility != View.GONE) {
-                        circular_progress_view.visibility = View.GONE
+                    if (circular_progress_view?.visibility != View.GONE) {
+                        circular_progress_view?.visibility = View.GONE
                     }
                 }
                 MediaPlayer.Event.EncounteredError -> {
                     Log.d(TAG, "EncounteredError")
 
-                    circular_progress_view.visibility = View.GONE
-                    video_loading_error_message.visibility = View.VISIBLE
+                    circular_progress_view?.visibility = View.GONE
+                    video_loading_error_message?.visibility = View.VISIBLE
 
                     releasePlayer()
                 }
                 MediaPlayer.Event.Stopped -> {
                     Log.d(TAG, "Stopped")
 
-                    circular_progress_view.visibility = View.GONE
-                    video_loading_error_message.visibility = View.VISIBLE
+                    circular_progress_view?.visibility = View.GONE
+                    video_loading_error_message?.visibility = View.VISIBLE
 
                     releasePlayer()
                 }
