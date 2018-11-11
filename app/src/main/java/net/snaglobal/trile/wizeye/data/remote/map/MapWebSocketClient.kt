@@ -10,7 +10,7 @@ import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketRequest
  * @author lmtri
  * @since Oct 26, 2018 at 9:37 AM
  */
-object MapWebSocketClient {
+class MapWebSocketClient {
 
     private val mapListNotifier = MutableLiveData<List<MapListItem>>()
 

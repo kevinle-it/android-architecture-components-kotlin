@@ -11,7 +11,7 @@ import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketRequest
  * @author lmtri
  * @since Oct 31, 2018 at 7:02 AM
  */
-object VideoWebSocketClient {
+class VideoWebSocketClient {
 
     private val videoListNotifier = MutableLiveData<List<VideoListItem>>()
     private val videoDetailNotifier = MutableLiveData<VideoDetail?>()

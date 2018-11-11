@@ -21,13 +21,13 @@ class RemoteDataSource {
             LoginClient.login(domain, username, password)
 
     fun getMapList(serverUrl: String, request: WebSocketRequest) =
-            MapWebSocketClient.getMapList(serverUrl, request)
+            MapWebSocketClient().getMapList(serverUrl, request)
 
     fun getVideoList(serverUrl: String, request: WebSocketRequest) =
-            VideoWebSocketClient.getVideoList(serverUrl, request)
+            VideoWebSocketClient().getVideoList(serverUrl, request)
 
     fun getVideoDetail(serverUrl: String, request: WebSocketRequest) =
-            VideoWebSocketClient.getVideoDetail(serverUrl, request)
+            VideoWebSocketClient().getVideoDetail(serverUrl, request)
 
     companion object : SingletonHolder<RemoteDataSource, Unit>({ RemoteDataSource() })
 }
