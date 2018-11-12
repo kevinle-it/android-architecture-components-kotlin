@@ -33,6 +33,7 @@
     <string name="video_detail_screen_ic_back_content_description">Back Icon</string>
     <string name="video_detail_screen_action_back_title">BACK TO CCTV LIST</string>
     <string name="video_detail_screen_video_could_not_load_message">Could not load video!</string>
+    <string name="video_detail_screen_empty_name_description">Empty</string>
 
     <!--Bottom Navigation View-->
     <string name="title_map">Map</string>
