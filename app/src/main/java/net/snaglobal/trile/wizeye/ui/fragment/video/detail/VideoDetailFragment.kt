@@ -11,6 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import io.reactivex.Completable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_video_detail.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.remote.model.VideoDetail
@@ -52,6 +55,8 @@ class VideoDetailFragment : Fragment() {
             MediaPlayer(it)
         }
     }
+
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,49 +129,61 @@ class VideoDetailFragment : Fragment() {
 
     override fun onDestroyView() {
 
-        releasePlayer() // Important -> else, crashed because Surface View has NOT been detached
+        // Important -> else, crashed because Surface View has NOT been detached
+        releasePlayer().subscribe({
+            // Do Nothing
+        }, {
+            it.printStackTrace()
+        })
 
         super.onDestroyView()
+    }
+
+    override fun onDetach() {
+        compositeDisposable.dispose()
+        super.onDetach()
     }
 
     private fun streamVideoFrom(rtspUrl: String,
                                 rtspId: String, rtspPassword: String,
                                 videoWidth: Int, videoHeight: Int) {
-        try {
-            releasePlayer()
+        compositeDisposable.add(
+                releasePlayer().andThen {
+                    camera_view.holder.setKeepScreenOn(true)
 
-            camera_view.holder.setKeepScreenOn(true)
+                    mediaPlayer?.apply {
+                        setEventListener(mediaPlayerEventListener)
 
-            mediaPlayer?.apply {
-                setEventListener(mediaPlayerEventListener)
+                        vlcVout.setVideoView(camera_view)
+                        vlcVout.setWindowSize(videoWidth, videoHeight)
+                        vlcVout.attachViews()
 
-                vlcVout.setVideoView(camera_view)
-                vlcVout.setWindowSize(videoWidth, videoHeight)
-                vlcVout.attachViews()
+                        val media = Media(libVLC, Uri.parse(
+                                rtspUrl.replace(
+                                        "//",
+                                        "//$rtspId:$rtspPassword@"
+                                )
+                        ))
+                        this.media = media
 
-                val media = Media(libVLC, Uri.parse(
-                        rtspUrl.replace(
-                                "//",
-                                "//$rtspId:$rtspPassword@"
-                        )
-                ))
-                this.media = media
+                        play()
+                    }
+                }.subscribeOn(Schedulers.computation()).subscribe({
+                    // Do Nothing
+                }, {
+                    circular_progress_view.visibility = View.GONE
+                    video_loading_error_message.visibility = View.VISIBLE
 
-                play()
-            }
-        } catch (e: Exception) {
-            circular_progress_view.visibility = View.GONE
-            video_loading_error_message.visibility = View.VISIBLE
-
-            e.printStackTrace()
-        }
+                    it.printStackTrace()
+                })
+        )
     }
 
-    private fun releasePlayer() {
+    private fun releasePlayer() = Completable.fromAction {
         mediaPlayer?.stop()
         mediaPlayer?.vlcVout?.detachViews()
         libVLC?.release()
-    }
+    }.subscribeOn(Schedulers.computation())
 
     private val mediaPlayerEventListener = MediaPlayer.EventListener { event ->
         event?.apply {
@@ -207,7 +224,11 @@ class VideoDetailFragment : Fragment() {
                     circular_progress_view?.visibility = View.GONE
                     video_loading_error_message?.visibility = View.VISIBLE
 
-                    releasePlayer()
+                    releasePlayer().subscribe({
+                        // Do Nothing
+                    }, {
+                        it.printStackTrace()
+                    })
                 }
                 MediaPlayer.Event.Stopped -> {
                     Log.d(TAG, "Stopped")
@@ -215,7 +236,11 @@ class VideoDetailFragment : Fragment() {
                     circular_progress_view?.visibility = View.GONE
                     video_loading_error_message?.visibility = View.VISIBLE
 
-                    releasePlayer()
+                    releasePlayer().subscribe({
+                        // Do Nothing
+                    }, {
+                        it.printStackTrace()
+                    })
                 }
                 else -> Log.d(TAG, "Other Events")
             }
