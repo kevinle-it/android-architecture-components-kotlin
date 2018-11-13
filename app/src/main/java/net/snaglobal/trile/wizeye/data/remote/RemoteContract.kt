@@ -6,4 +6,6 @@ package net.snaglobal.trile.wizeye.data.remote
  */
 object RemoteContract {
     const val WIZEYE_LOGIN_URL = "http://%s/"
+
+    const val WEB_SOCKET_URL = "ws://%s/echo?token=%s"
 }
