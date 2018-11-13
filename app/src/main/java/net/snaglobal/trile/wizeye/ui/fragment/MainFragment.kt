@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_main.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
@@ -97,6 +99,26 @@ class MainFragment : Fragment() {
         view_pager.offscreenPageLimit = MainFragmentContract.VIEW_PAGER_OFF_SCREEN_PAGE_LIMIT
 
         bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        val menuView = bottom_navigation.getChildAt(0) as ViewGroup
+        for (index in 0 until menuView.childCount) {
+            val item = menuView.getChildAt(index)
+
+            val inactiveLabel = item?.findViewById<View>(R.id.smallLabel)
+            inactiveLabel?.let {
+                if (it is TextView) {
+                    it.ellipsize = TextUtils.TruncateAt.END
+                }
+            }
+
+            val activeLabel = item?.findViewById<View>(R.id.largeLabel)
+            activeLabel?.let {
+                if (it is TextView) {
+                    it.setPadding(0, 0, 0, 0)
+                    it.ellipsize = TextUtils.TruncateAt.END
+                }
+            }
+        }
 
         setupViewPager()
     }
