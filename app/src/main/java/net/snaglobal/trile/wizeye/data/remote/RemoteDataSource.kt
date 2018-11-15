@@ -23,6 +23,9 @@ class RemoteDataSource {
     fun getMapList(serverUrl: String, request: WebSocketRequest) =
             MapWebSocketClient().getMapList(serverUrl, request)
 
+    fun getMapDetail(serverUrl: String, request: WebSocketRequest) =
+            MapWebSocketClient().getMapDetail(serverUrl, request)
+
     fun getVideoList(serverUrl: String, request: WebSocketRequest) =
             VideoWebSocketClient().getVideoList(serverUrl, request)
 
