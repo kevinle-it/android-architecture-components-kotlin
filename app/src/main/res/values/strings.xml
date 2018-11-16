@@ -17,6 +17,7 @@
     <string name="login_screen_login_failed_message">Your Server, ID or Password might be wrong.\nPlease try again.</string>
 
     <!--Main Screen-->
+    <string name="main_screen_name">Main Screen</string>
     <!--Toolbar-->
     <string name="toolbar_action_more_popup_menu_action_about">About</string>
     <string name="toolbar_action_more_popup_menu_action_logout">Log Out</string>
@@ -30,6 +31,7 @@
     <string name="video_item_ic_next_image_description">Next Icon</string>
 
     <!--Video Detail Screen-->
+    <string name="video_detail_screen_name">CCTV Detail Screen</string>
     <string name="video_detail_screen_ic_back_content_description">Back Icon</string>
     <string name="video_detail_screen_action_back_title">BACK TO CCTV LIST</string>
     <string name="video_detail_screen_video_could_not_load_message">Could not load video!</string>

@@ -14,12 +14,12 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 import net.snaglobal.trile.wizeye.ui.fragment.MainFragment
+import net.snaglobal.trile.wizeye.ui.fragment.about.SharedAboutViewModel
 import net.snaglobal.trile.wizeye.ui.fragment.video.detail.VideoDetailFragment
 import net.snaglobal.trile.wizeye.utils.observeOnce
 
@@ -29,6 +29,12 @@ class MainActivity : AppCompatActivity() {
         ViewModelProviders
                 .of(this)
                 .get(MainActivityViewModel::class.java)
+    }
+
+    private val sharedAboutViewModel by lazy {
+        ViewModelProviders
+                .of(this)
+                .get(SharedAboutViewModel::class.java)
     }
 
     private val actionMorePopupWindow by lazy {
@@ -105,10 +111,20 @@ class MainActivity : AppCompatActivity() {
         ).setOnClickListener {
             actionMorePopupWindow.dismiss()
 
-            Toast.makeText(
-                    this, "Action About Clicked!", Toast.LENGTH_SHORT
-            ).show()
-            // TODO: Nov-01-2018 Open About Fragment
+            val currentFragmnet = nav_host_fragment.childFragmentManager.fragments[0]
+
+            when (currentFragmnet) {
+                is MainFragment -> {
+                    sharedAboutViewModel.previousFragmentName = getString(R.string.main_screen_name)
+                    nav_host_fragment.findNavController()
+                            .navigate(R.id.action_mainFragment_to_aboutFragment)
+                }
+                is VideoDetailFragment -> {
+                    sharedAboutViewModel.previousFragmentName = getString(R.string.video_detail_screen_name)
+                    nav_host_fragment.findNavController()
+                            .navigate(R.id.action_videoDetailFragment_to_aboutFragment)
+                }
+            }
         }
 
         popupMenuLayout.findViewById<LinearLayout>(
