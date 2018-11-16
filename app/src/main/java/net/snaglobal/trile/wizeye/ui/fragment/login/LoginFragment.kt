@@ -17,7 +17,11 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_login.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.remote.model.LoginResponse
+import net.snaglobal.trile.wizeye.data.remote.retrofit.RetrofitClient
+import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketClient
+import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 import net.snaglobal.trile.wizeye.utils.KeyboardHelper
+import net.snaglobal.trile.wizeye.utils.observeOnce
 
 /**
  * @author trile
@@ -29,6 +33,10 @@ import net.snaglobal.trile.wizeye.utils.KeyboardHelper
  */
 class LoginFragment : Fragment() {
 
+    private val mainActivityViewModel by lazy {
+        ViewModelProviders.of(activity!!).get(MainActivityViewModel::class.java)
+    }
+
     private val loginViewModel by lazy {
         ViewModelProviders.of(this).get(LoginViewModel::class.java)
     }
@@ -36,7 +44,22 @@ class LoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.fragment_login, container, false)
+
+        mainActivityViewModel.isToolbarVisible.value = false
+
+        mainActivityViewModel.logOut().observeOnce(activity!!, Observer {
+            it?.also { isLoggedOut ->
+                if (isLoggedOut) {
+                    RetrofitClient.resetInstance()  // Important -> To use another Server URL
+                    WebSocketClient.resetInstance() // Important -> To use another Server URL
+                } else {
+                    mainActivityViewModel.logOut()  // Try again
+                }
+            }
+        })
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,6 +111,9 @@ class LoginFragment : Fragment() {
         })
 
         loginViewModel.loginError.observe(this, Observer { throwable: Throwable? ->
+            // [resetInstance] is Important -> To be able to Log In Again with another Server URL
+            RetrofitClient.resetInstance()
+
             error_message.visibility = View.VISIBLE
             enableLoginButton()
 

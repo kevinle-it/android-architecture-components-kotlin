@@ -28,6 +28,8 @@ class MainActivityViewModel(app: Application) : AndroidViewModel(app) {
 
     private val currentUserInfoNotifier = MutableLiveData<LoginCredentialEntity?>()
 
+    private val logoutNotifier = MutableLiveData<Boolean>()
+
     fun getCurrentUserInfo(): LiveData<LoginCredentialEntity?> {
         compositeDisposable.add(
                 dataRepository.getLastLoggedInCredential()
@@ -38,6 +40,18 @@ class MainActivityViewModel(app: Application) : AndroidViewModel(app) {
                         })
         )
         return currentUserInfoNotifier
+    }
+
+    fun logOut(): LiveData<Boolean> {
+        compositeDisposable.add(
+                dataRepository.logout()
+                        .subscribe({
+                            logoutNotifier.postValue(it)
+                        }, {
+                            it.printStackTrace()
+                        })
+        )
+        return logoutNotifier
     }
 
     /**

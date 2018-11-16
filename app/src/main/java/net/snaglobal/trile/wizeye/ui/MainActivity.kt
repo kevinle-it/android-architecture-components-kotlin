@@ -15,10 +15,13 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
+import net.snaglobal.trile.wizeye.ui.fragment.MainFragment
 import net.snaglobal.trile.wizeye.ui.fragment.login.LoginViewModel
+import net.snaglobal.trile.wizeye.ui.fragment.video.detail.VideoDetailFragment
 import net.snaglobal.trile.wizeye.utils.observeOnce
 
 class MainActivity : AppCompatActivity() {
@@ -137,10 +140,18 @@ class MainActivity : AppCompatActivity() {
             logoutDialogLayout.findViewById<TextView>(R.id.action_logout).setOnClickListener {
                 logoutDialog.dismiss()
 
-                Toast.makeText(
-                        this, "Log Out Clicked!", Toast.LENGTH_SHORT
-                ).show()
-                // TODO: Nov-06-2018 Perform Logging Out of Current User
+                val currentFragmnet = nav_host_fragment.childFragmentManager.fragments[0]
+
+                when (currentFragmnet) {
+                    is MainFragment -> {
+                        nav_host_fragment.findNavController()
+                                .navigate(R.id.action_mainFragment_to_loginFragment)
+                    }
+                    is VideoDetailFragment -> {
+                        nav_host_fragment.findNavController()
+                                .navigate(R.id.action_videoDetailFragment_to_loginFragment)
+                    }
+                }
             }
         }
     }

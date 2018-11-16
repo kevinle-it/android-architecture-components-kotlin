@@ -5,7 +5,7 @@ package net.snaglobal.trile.wizeye.utils
  * @since Oct 11, 2018 at 9:40 AM
  */
 open class SingletonHolder<out T, in A>(creator: (A) -> T) {
-    private var creator: ((A) -> T)? = creator
+    private var creator: (A) -> T = creator
     @Volatile private var instance: T? = null
 
     fun getInstance(arg: A): T {
@@ -21,9 +21,14 @@ open class SingletonHolder<out T, in A>(creator: (A) -> T) {
             } else {
                 val created = creator!!(arg)
                 instance = created
-                creator = null
                 created
             }
+        }
+    }
+
+    fun resetInstance() {
+        synchronized(this) {
+            instance = null
         }
     }
 }

@@ -52,6 +52,26 @@ class DataRepository(
                 return@flatMap Single.just(it)
             }
 
+    fun logout(): Single<Boolean> = getLastLoggedInCredential()
+            .map {
+                it.value?.run {
+                    if (isLoggedIn) {
+                        val numOfRowsUpdated = roomDataSource.loginCredentialDao()
+                                .updateLoginCredential(
+                                        LoginCredentialEntity(
+                                                domain, userId, password,
+                                                token, Date(), false
+                                        )
+                                )
+                        numOfRowsUpdated == 1
+                    } else {
+                        false
+                    }
+                } ?: kotlin.run {
+                    false
+                }
+            }
+
     fun checkIfLoggedInOnAppOpen(): Single<Boolean> =
             Single.defer {
                 Single.just(
