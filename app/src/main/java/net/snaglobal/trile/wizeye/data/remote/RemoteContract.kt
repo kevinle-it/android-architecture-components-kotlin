@@ -9,4 +9,6 @@ object RemoteContract {
     const val WIZEYE_LOGIN_FIXED_DOMAIN = "mgkim.w20.n3n.co.kr"
 
     const val WEB_SOCKET_URL = "ws://%s/echo?token=%s"
+
+    const val GET_MAP_VIEW_URL = "http://%s/view?token=%s&mapId=%s"
 }

@@ -24,6 +24,7 @@ import net.snaglobal.trile.wizeye.data.remote.websocket.WebSocketRequest
 class MapDetailViewModel(app: Application) : AndroidViewModel(app) {
 
     var currentMapViewInfo: Pair<String, MapDetail>? = null
+    var isAllowedToDismissCircularProgress = false
 
     private val compositeDisposable by lazy {
         CompositeDisposable()
