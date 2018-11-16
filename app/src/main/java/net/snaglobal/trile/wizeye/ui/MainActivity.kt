@@ -21,6 +21,7 @@ import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 import net.snaglobal.trile.wizeye.ui.fragment.MainFragment
 import net.snaglobal.trile.wizeye.ui.fragment.about.AboutFragment
 import net.snaglobal.trile.wizeye.ui.fragment.about.SharedAboutViewModel
+import net.snaglobal.trile.wizeye.ui.fragment.map.detail.MapDetailFragment
 import net.snaglobal.trile.wizeye.ui.fragment.video.detail.VideoDetailFragment
 import net.snaglobal.trile.wizeye.utils.observeOnce
 
@@ -119,6 +120,11 @@ class MainActivity : AppCompatActivity() {
                     sharedAboutViewModel.previousFragmentName = getString(R.string.main_screen_name)
                     nav_host_fragment.findNavController()
                             .navigate(R.id.action_mainFragment_to_aboutFragment)
+                }
+                is MapDetailFragment -> {
+                    sharedAboutViewModel.previousFragmentName = getString(R.string.map_detail_screen_name)
+                    nav_host_fragment.findNavController()
+                            .navigate(R.id.action_mapDetailFragment_to_aboutFragment)
                 }
                 is VideoDetailFragment -> {
                     sharedAboutViewModel.previousFragmentName = getString(R.string.video_detail_screen_name)

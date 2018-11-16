@@ -26,6 +26,9 @@
     <string name="map_item_ic_location_image_description">Location Icon</string>
     <string name="map_item_ic_next_image_description">Next Icon</string>
 
+    <!--Map Detail Screen-->
+    <string name="map_detail_screen_name">Map Detail Screen</string>
+
     <!--Video Item-->
     <string name="video_item_ic_location_image_description">Location Icon</string>
     <string name="video_item_ic_next_image_description">Next Icon</string>
