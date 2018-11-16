@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import net.snaglobal.trile.wizeye.R
 import net.snaglobal.trile.wizeye.data.room.entity.LoginCredentialEntity
 import net.snaglobal.trile.wizeye.ui.fragment.MainFragment
+import net.snaglobal.trile.wizeye.ui.fragment.about.AboutFragment
 import net.snaglobal.trile.wizeye.ui.fragment.about.SharedAboutViewModel
 import net.snaglobal.trile.wizeye.ui.fragment.video.detail.VideoDetailFragment
 import net.snaglobal.trile.wizeye.utils.observeOnce
@@ -160,6 +161,10 @@ class MainActivity : AppCompatActivity() {
                     is VideoDetailFragment -> {
                         nav_host_fragment.findNavController()
                                 .navigate(R.id.action_videoDetailFragment_to_loginFragment)
+                    }
+                    is AboutFragment -> {
+                        nav_host_fragment.findNavController()
+                                .navigate(R.id.action_aboutFragment_to_loginFragment)
                     }
                 }
             }
