@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_map_list.*
 import net.snaglobal.trile.wizeye.R
@@ -29,12 +28,7 @@ class MapListFragment : Fragment() {
 
     private val mapItemAdapter = MapItemAdapter(object : MapItemAdapter.OnMapItemClickListener {
         override fun onClick(mapItem: MapListItem) {
-            Toast.makeText(
-                    activity,
-                    "Map Item \"${mapItem.displayName}\" Clicked!",
-                    Toast.LENGTH_SHORT
-            ).show()
-            // TODO: Oct-30-2018 Implement Map Item On Click Function
+            findNavController().navigate(R.id.action_mainFragment_to_mapDetailFragment)
         }
     })
 
