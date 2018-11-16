@@ -164,6 +164,10 @@ class MainActivity : AppCompatActivity() {
                         nav_host_fragment.findNavController()
                                 .navigate(R.id.action_mainFragment_to_loginFragment)
                     }
+                    is MapDetailFragment -> {
+                        nav_host_fragment.findNavController()
+                                .navigate(R.id.action_mapDetailFragment_to_loginFragment)
+                    }
                     is VideoDetailFragment -> {
                         nav_host_fragment.findNavController()
                                 .navigate(R.id.action_videoDetailFragment_to_loginFragment)
