@@ -55,7 +55,7 @@
                     android:layout_marginEnd="@dimen/login_screen_input_left_right_margin"
                     android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
                     android:layout_marginBottom="@dimen/login_screen_input_bottom_margin"
-                    android:background="@drawable/login_input_background"
+                    android:background="@drawable/login_input_background_unfocused"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toTopOf="@+id/id_input_container"
@@ -64,6 +64,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/wizeye_logo">
 
                     <ImageView
+                        android:id="@+id/server_address_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/login_screen_server_address_input_left_image_description"
@@ -79,13 +80,13 @@
                         android:layout_height="@dimen/login_screen_input_box_height"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:fontFamily="@string/font_family_roboto_medium"
+                        android:fontFamily="@string/font_family_roboto_regular"
                         android:gravity="center_vertical"
                         android:hint="@string/login_screen_server_address_input_hint"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white"
+                        android:textColorHint="@color/white_60_percent"
                         android:textCursorDrawable="@null"
                         android:textSize="@dimen/login_screen_input_text_size" />
 
@@ -100,7 +101,7 @@
                     android:layout_marginEnd="@dimen/login_screen_input_left_right_margin"
                     android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
                     android:layout_marginBottom="@dimen/login_screen_input_bottom_margin"
-                    android:background="@drawable/login_input_background"
+                    android:background="@drawable/login_input_background_unfocused"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toTopOf="@+id/password_input_container"
@@ -109,6 +110,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/server_address_input_container">
 
                     <ImageView
+                        android:id="@+id/id_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/login_screen_id_input_left_image_description"
@@ -124,13 +126,13 @@
                         android:layout_height="@dimen/login_screen_input_box_height"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:fontFamily="@string/font_family_roboto_medium"
+                        android:fontFamily="@string/font_family_roboto_regular"
                         android:gravity="center_vertical"
                         android:hint="@string/login_screen_id_input_hint"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white"
+                        android:textColorHint="@color/white_60_percent"
                         android:textCursorDrawable="@null"
                         android:textSize="@dimen/login_screen_input_text_size" />
 
@@ -144,7 +146,7 @@
                     android:layout_marginLeft="@dimen/login_screen_input_left_right_margin"
                     android:layout_marginEnd="@dimen/login_screen_input_left_right_margin"
                     android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
-                    android:background="@drawable/login_input_background"
+                    android:background="@drawable/login_input_background_unfocused"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toTopOf="@+id/login_button"
@@ -153,6 +155,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/id_input_container">
 
                     <ImageView
+                        android:id="@+id/password_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/login_screen_password_input_left_image_description"
@@ -168,13 +171,13 @@
                         android:layout_height="@dimen/login_screen_input_box_height"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:fontFamily="@string/font_family_roboto_medium"
+                        android:fontFamily="@string/font_family_roboto_regular"
                         android:gravity="center_vertical"
                         android:hint="@string/login_screen_password_input_hint"
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white"
+                        android:textColorHint="@color/white_60_percent"
                         android:textCursorDrawable="@null"
                         android:textSize="@dimen/login_screen_input_text_size" />
 
@@ -191,10 +194,12 @@
                     android:layout_marginRight="@dimen/login_screen_input_left_right_margin"
                     android:background="@drawable/login_button_disabled_background"
                     android:enabled="false"
+                    android:fontFamily="@string/font_family_roboto_regular"
                     android:text="@string/login_screen_login_button_text"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/login_screen_button_text_size"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

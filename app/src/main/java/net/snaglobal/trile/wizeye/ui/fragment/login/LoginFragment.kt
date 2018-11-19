@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.res.ResourcesCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -69,6 +70,8 @@ class LoginFragment : Fragment() {
         // Remove auto-focus from all EditTexts
         main_container.requestFocus()
 
+        initInputIconAndTextColor()
+
         // Check if all AutoCompleteTextViews are filled with credential info on Application Opening
         toggleLoginButtonEnabling(
                 server_address_input.text.toString(),
@@ -77,14 +80,41 @@ class LoginFragment : Fragment() {
         )
 
         server_address_input.afterTextChanged {
+            if (it.isEmpty()) {
+                server_address_icon.setColorFilter(
+                        ResourcesCompat.getColor(resources, R.color.white_60_percent, null)
+                )
+            } else {
+                server_address_icon.setColorFilter(
+                        ResourcesCompat.getColor(resources, android.R.color.white, null)
+                )
+            }
             toggleLoginButtonEnabling(it, id_input.text.toString(), password_input.text.toString())
         }
 
         id_input.afterTextChanged {
+            if (it.isEmpty()) {
+                id_icon.setColorFilter(
+                        ResourcesCompat.getColor(resources, R.color.white_60_percent, null)
+                )
+            } else {
+                id_icon.setColorFilter(
+                        ResourcesCompat.getColor(resources, android.R.color.white, null)
+                )
+            }
             toggleLoginButtonEnabling(server_address_input.text.toString(), it, password_input.text.toString())
         }
 
         password_input.afterTextChanged {
+            if (it.isEmpty()) {
+                password_icon.setColorFilter(
+                        ResourcesCompat.getColor(resources, R.color.white_60_percent, null)
+                )
+            } else {
+                password_icon.setColorFilter(
+                        ResourcesCompat.getColor(resources, android.R.color.white, null)
+                )
+            }
             toggleLoginButtonEnabling(server_address_input.text.toString(), id_input.text.toString(), it)
         }
         password_input.setOnEditorActionListener { _, actionId, _ ->
@@ -122,6 +152,58 @@ class LoginFragment : Fragment() {
 
             throwable?.printStackTrace()
         })
+    }
+
+    private fun initInputIconAndTextColor() {
+        server_address_icon.setColorFilter(
+                ResourcesCompat.getColor(resources, R.color.white_60_percent, null)
+        )
+        id_icon.setColorFilter(
+                ResourcesCompat.getColor(resources, R.color.white_60_percent, null)
+        )
+        password_icon.setColorFilter(
+                ResourcesCompat.getColor(resources, R.color.white_60_percent, null)
+        )
+
+        server_address_input.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                server_address_input_container.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.login_input_background_focused
+                )
+            } else {
+                server_address_input_container.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.login_input_background_unfocused
+                )
+            }
+        }
+        id_input.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                id_input_container.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.login_input_background_focused
+                )
+            } else {
+                id_input_container.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.login_input_background_unfocused
+                )
+            }
+        }
+        password_input.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                password_input_container.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.login_input_background_focused
+                )
+            } else {
+                password_input_container.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.login_input_background_unfocused
+                )
+            }
+        }
     }
 
     private fun toggleLoginButtonEnabling(serverAddress: String, id: String, password: String) {
