@@ -55,6 +55,10 @@
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_mainFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+
     </fragment>
 
     <fragment
@@ -65,6 +69,24 @@
 
         <action
             android:id="@+id/action_videoDetailFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_videoDetailFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="net.snaglobal.trile.wizeye.ui.fragment.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about">
+
+        <action
+            android:id="@+id/action_aboutFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
