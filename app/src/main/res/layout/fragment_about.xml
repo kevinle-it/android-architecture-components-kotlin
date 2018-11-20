@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/woodsmoke"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.about.AboutFragment">
+
+    <LinearLayout
+        android:id="@+id/action_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/about_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/about_screen_content_left_margin"
+        android:layout_marginTop="@dimen/about_screen_action_back_top_margin"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/about_screen_ic_back_width"
+            android:layout_height="@dimen/about_screen_ic_back_height"
+            android:contentDescription="@string/about_screen_ic_back_content_description"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/action_back_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/about_screen_action_back_title_left_margin"
+            android:layout_marginLeft="@dimen/about_screen_action_back_title_left_margin"
+            android:fontFamily="@string/font_family_roboto_medium"
+            android:gravity="start"
+            android:text="@string/about_screen_action_back_title"
+            android:textColor="@color/cadet_blue"
+            android:textSize="@dimen/about_screen_action_back_title_text_size" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/about_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/about_screen_content_left_margin"
+        android:layout_marginTop="@dimen/about_screen_app_name_top_margin"
+        android:fontFamily="@string/font_family_roboto_regular"
+        android:gravity="start"
+        android:text="@string/about_screen_app_name_mockup"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/about_screen_app_name_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/app_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/about_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/about_screen_content_left_margin"
+        android:layout_marginTop="@dimen/about_screen_app_version_top_margin"
+        android:fontFamily="@string/font_family_roboto_medium"
+        android:gravity="start"
+        android:text="@string/about_screen_app_version_mockup"
+        android:textColor="@color/cadet_blue"
+        android:textSize="@dimen/about_screen_app_version_text_size" />
+
+    <TextView
+        android:id="@+id/app_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/about_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/about_screen_content_left_margin"
+        android:layout_marginTop="@dimen/about_screen_app_description_top_margin"
+        android:fontFamily="@string/font_family_roboto_medium"
+        android:gravity="start"
+        android:text="@string/about_screen_app_description_mockup"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/about_screen_app_description_text_size" />
+
+    <TextView
+        android:id="@+id/app_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/about_screen_content_left_margin"
+        android:layout_marginLeft="@dimen/about_screen_content_left_margin"
+        android:layout_marginTop="@dimen/about_screen_app_link_top_margin"
+        android:fontFamily="@string/font_family_roboto_medium"
+        android:gravity="start"
+        android:text="@string/about_screen_app_link_mockup"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/about_screen_app_link_text_size" />
+
+</LinearLayout>

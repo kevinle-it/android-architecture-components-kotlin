@@ -35,6 +35,23 @@
     <string name="video_detail_screen_video_could_not_load_message">Could not load video!</string>
     <string name="video_detail_screen_empty_name_description">Empty</string>
 
+    <!--About Screen-->
+    <string name="about_screen_ic_back_content_description">Back Icon</string>
+    <string name="about_screen_action_back_title">BACK</string>
+    <string name="about_screen_action_back_to_title">BACK TO %1$s</string>
+    <string name="about_screen_app_name_mockup">Wizeye App</string>
+    <string name="about_screen_app_version_mockup">VERSION 1.1</string>
+    <string name="about_screen_app_description_mockup">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+        has been the industry\'s standard dummy text ever since the 1500s, when an unknown
+        printer took a galley of type and scrambled it to make a type specimen book. It has
+        survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </string>
+    <string name="about_screen_app_link_mockup">http://hana-collabo.wizeye.io/</string>
+
     <!--Bottom Navigation View-->
     <string name="title_map">Map</string>
     <string name="title_alert_list">Alert List</string>

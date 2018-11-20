@@ -79,6 +79,22 @@
     <dimen name="video_detail_screen_camera_view_top_margin">40dp</dimen>
     <dimen name="video_detail_screen_video_loading_error_message_text_size">18sp</dimen>
 
+    <!--About Screen-->
+    <dimen name="about_screen_content_left_margin">16dp</dimen>
+    <dimen name="about_screen_action_back_top_margin">24dp</dimen>
+    <dimen name="about_screen_ic_back_width">8dp</dimen>
+    <dimen name="about_screen_ic_back_height">16dp</dimen>
+    <dimen name="about_screen_action_back_title_left_margin">12dp</dimen>
+    <dimen name="about_screen_action_back_title_text_size">12sp</dimen>
+    <dimen name="about_screen_app_name_top_margin">16dp</dimen>
+    <dimen name="about_screen_app_name_text_size">24sp</dimen>
+    <dimen name="about_screen_app_version_top_margin">10dp</dimen>
+    <dimen name="about_screen_app_version_text_size">12sp</dimen>
+    <dimen name="about_screen_app_description_top_margin">30dp</dimen>
+    <dimen name="about_screen_app_description_text_size">15sp</dimen>
+    <dimen name="about_screen_app_link_top_margin">30dp</dimen>
+    <dimen name="about_screen_app_link_text_size">13sp</dimen>
+
     <!--Bottom Navigation View-->
     <dimen name="main_screen_bottom_navigation_height">48dp</dimen>
 </resources>
