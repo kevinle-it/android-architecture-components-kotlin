@@ -29,6 +29,7 @@
 
     <!--Main Screen-->
     <!--Toolbar-->
+    <dimen name="toolbar_action_more_popup_menu_width">275dp</dimen>
     <dimen name="toolbar_action_more_popup_menu_content_left_margin">24dp</dimen>
     <dimen name="toolbar_action_more_popup_menu_username_top_margin">24dp</dimen>
     <dimen name="toolbar_action_more_popup_menu_username_text_size">16sp</dimen>
