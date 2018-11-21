@@ -28,6 +28,18 @@
     <dimen name="login_screen_login_failed_message_text_size">12sp</dimen>
 
     <!--Main Screen-->
+    <!--Toolbar-->
+    <dimen name="toolbar_action_more_popup_menu_content_left_margin">24dp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_username_top_margin">24dp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_username_text_size">16sp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_email_top_margin">6dp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_email_bottom_margin">24dp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_email_text_size">12sp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_divider_height">2dp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_action_top_bottom_margin">12dp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_action_icon_right_margin">16dp</dimen>
+    <dimen name="toolbar_action_more_popup_menu_action_text_size">16sp</dimen>
+
     <!--Map Item-->
     <dimen name="map_item_left_padding">16dp</dimen>
     <dimen name="map_item_location_icon_right_margin">24dp</dimen>

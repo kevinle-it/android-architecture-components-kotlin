@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/toolbar_action_more_popup_menu_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/toolbar_action_more_popup_menu_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginLeft="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginTop="@dimen/toolbar_action_more_popup_menu_username_top_margin"
+        android:fontFamily="@string/font_family_roboto_regular"
+        android:gravity="start"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/toolbar_action_more_popup_menu_username_text_size"
+        android:textStyle="bold"
+        tools:text="John Doe" />
+
+    <TextView
+        android:id="@+id/toolbar_action_more_popup_menu_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginLeft="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginTop="@dimen/toolbar_action_more_popup_menu_email_top_margin"
+        android:layout_marginBottom="@dimen/toolbar_action_more_popup_menu_email_bottom_margin"
+        android:fontFamily="@string/font_family_roboto_medium"
+        android:gravity="start"
+        android:textColor="@color/cadet_blue"
+        android:textSize="@dimen/toolbar_action_more_popup_menu_email_text_size"
+        tools:text="JOHN.DOE@WIZEYE.COM" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_action_more_popup_menu_divider_height"
+        android:background="@color/tuna" />
+
+    <LinearLayout
+        android:id="@+id/toolbar_action_more_popup_menu_action_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginLeft="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginTop="@dimen/toolbar_action_more_popup_menu_action_top_bottom_margin"
+        android:layout_marginBottom="@dimen/toolbar_action_more_popup_menu_action_top_bottom_margin"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/toolbar_action_more_popup_menu_action_icon_right_margin"
+            android:layout_marginRight="@dimen/toolbar_action_more_popup_menu_action_icon_right_margin"
+            android:contentDescription=""
+            app:srcCompat="@drawable/ic_info" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@string/font_family_roboto_regular"
+            android:gravity="start"
+            android:text="@string/toolbar_action_more_popup_menu_action_about"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbar_action_more_popup_menu_action_text_size"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_action_more_popup_menu_divider_height"
+        android:background="@color/tuna" />
+
+    <LinearLayout
+        android:id="@+id/toolbar_action_more_popup_menu_action_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginLeft="@dimen/toolbar_action_more_popup_menu_content_left_margin"
+        android:layout_marginTop="@dimen/toolbar_action_more_popup_menu_action_top_bottom_margin"
+        android:layout_marginBottom="@dimen/toolbar_action_more_popup_menu_action_top_bottom_margin"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/toolbar_action_more_popup_menu_action_icon_right_margin"
+            android:layout_marginRight="@dimen/toolbar_action_more_popup_menu_action_icon_right_margin"
+            android:contentDescription=""
+            app:srcCompat="@drawable/ic_logout" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@string/font_family_roboto_regular"
+            android:gravity="start"
+            android:text="@string/toolbar_action_more_popup_menu_action_logout"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbar_action_more_popup_menu_action_text_size"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+</LinearLayout>

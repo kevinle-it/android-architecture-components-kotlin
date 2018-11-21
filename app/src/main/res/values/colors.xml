@@ -17,6 +17,11 @@
     <color name="white_45_percent">#73FFFFFF</color>
 
     <!--Main Screen-->
+    <!--Toolbar-->
+    <color name="cadet_blue">#A9B3BE</color>
+    <color name="tuna">#383D43</color>
+    <color name="mako">#474D53</color>
+
     <!--Main Fragment-->
     <color name="woodsmoke">#171A1C</color>
 

@@ -17,6 +17,10 @@
     <string name="login_screen_login_failed_message">Your Server, ID or Password might be wrong.\nPlease try again.</string>
 
     <!--Main Screen-->
+    <!--Toolbar-->
+    <string name="toolbar_action_more_popup_menu_action_about">About</string>
+    <string name="toolbar_action_more_popup_menu_action_logout">Log Out</string>
+
     <!--Map Item-->
     <string name="map_item_ic_location_image_description">Location Icon</string>
     <string name="map_item_ic_next_image_description">Next Icon</string>
