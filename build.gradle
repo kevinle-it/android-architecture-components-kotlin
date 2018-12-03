@@ -18,6 +18,7 @@ buildscript {
         lifecycle_version = "1.1.1"
 
         retrofit_version = "2.4.0"
+        okhttp_logging_interceptor_version = "3.11.0"
     }
     repositories {
         google()
