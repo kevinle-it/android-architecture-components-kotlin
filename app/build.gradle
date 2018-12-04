@@ -71,4 +71,10 @@ dependencies {
 
     // LibVLC for streaming RTSP Video
     implementation "de.mrmaffen:libvlc-android:$lib_vlc_version"
+
+    // Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 }
+
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'
