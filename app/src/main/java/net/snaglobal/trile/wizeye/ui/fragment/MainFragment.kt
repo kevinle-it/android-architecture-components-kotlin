@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_main.*
 import net.snaglobal.trile.wizeye.R
+import net.snaglobal.trile.wizeye.data.remote.notification.FirebaseMessagingContract
 import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 import net.snaglobal.trile.wizeye.ui.fragment.map.list.MapListFragment
 import net.snaglobal.trile.wizeye.ui.fragment.video.list.VideoListFragment
@@ -126,6 +127,18 @@ class MainFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         view_pager.addOnPageChangeListener(viewPagerOnPageChangeListener)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val viewPagerIndex = arguments?.getInt(
+                FirebaseMessagingContract.DEEP_LINK_ARGUMENT_VIEW_PAGER_KEY,
+                -1
+        )
+        if (viewPagerIndex != -1 && viewPagerIndex != null) {
+            view_pager.setCurrentItem(viewPagerIndex, false)
+        }
     }
 
     override fun onStop() {

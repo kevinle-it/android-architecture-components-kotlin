@@ -29,6 +29,16 @@
     <!--Map Detail Screen-->
     <string name="map_detail_screen_name">Map Detail Screen</string>
 
+    <!--Alert Screen-->
+    <string name="alert_default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="alert_default_notification_channel_name" translatable="true">Wizeye Alert</string>
+    <string name="alert_default_notification_title">Wizeye Notification</string>
+    <string name="alert_default_notification_body">New Wizeye Alert</string>
+
     <!--Video Item-->
     <string name="video_item_ic_location_image_description">Location Icon</string>
     <string name="video_item_ic_next_image_description">Next Icon</string>

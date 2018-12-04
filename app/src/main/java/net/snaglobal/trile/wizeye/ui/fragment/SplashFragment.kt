@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import io.reactivex.disposables.CompositeDisposable
 import net.snaglobal.trile.wizeye.InjectorUtils
 import net.snaglobal.trile.wizeye.R
+import net.snaglobal.trile.wizeye.data.remote.notification.FirebaseMessagingContract
 import net.snaglobal.trile.wizeye.ui.MainActivityViewModel
 
 private const val SPLASH_DELAY: Long = 3000
@@ -49,18 +50,31 @@ class SplashFragment : Fragment() {
 
         mainActivityViewModel.isToolbarVisible.value = false
 
-        loggedInNotifier.observe(this, Observer { isLoggedIn: Boolean? ->
-            Handler().postDelayed({
-                isLoggedIn?.let {
-                    if (it) {
-                        findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
-                    } else {
-                        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        val viewPagerIndex = arguments?.getInt(
+                FirebaseMessagingContract.DEEP_LINK_ARGUMENT_VIEW_PAGER_KEY,
+                -1
+        )
+        if (viewPagerIndex != -1 && viewPagerIndex != null) {   // User taps on notification
+            val args = Bundle()
+            args.putInt(
+                    FirebaseMessagingContract.DEEP_LINK_ARGUMENT_VIEW_PAGER_KEY,
+                    MainFragmentContract.VIEW_PAGER_INDEX_ALERT
+            )
+            findNavController().navigate(R.id.action_splashFragment_to_mainFragment, args)
+        } else {
+            loggedInNotifier.observe(this, Observer { isLoggedIn: Boolean? ->
+                Handler().postDelayed({
+                    isLoggedIn?.let {
+                        if (it) {
+                            findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
+                        } else {
+                            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                        }
                     }
-                }
-            }, SPLASH_DELAY)
-        })
-        checkIfLoggedInOnAppOpen()
+                }, SPLASH_DELAY)
+            })
+            checkIfLoggedInOnAppOpen()
+        }
 
         return view
     }
